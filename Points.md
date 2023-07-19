@@ -1,0 +1,13 @@
+- Abstract
+- Intro
+  - Ethereum summary
+  - Why it doesn't work for videogames
+- Layer 2 blockchains
+  - Types of layer 2
+- Rollups
+  - Merkle trees
+- Starknet
+  - Various concepts
+  - How to deploy a contract
+- Applications
+  - Lootboxes
