@@ -20,10 +20,9 @@
 \contentsline {subsubsection}{\numberline {6.1.4}Optimistic rollups and videogames}{13}{subsubsection.6.1.4}%
 \contentsline {subsection}{\numberline {6.2}Zero-knowledge rollups}{14}{subsection.6.2}%
 \contentsline {subsubsection}{\numberline {6.2.1}Entering a ZK rollup}{14}{subsubsection.6.2.1}%
-\contentsline {subsubsection}{\numberline {6.2.2}Exiting a ZK rollup}{14}{subsubsection.6.2.2}%
+\contentsline {subsubsection}{\numberline {6.2.2}Exiting a ZK rollup}{15}{subsubsection.6.2.2}%
 \contentsline {subsubsection}{\numberline {6.2.3}L2 - L1 interaction}{15}{subsubsection.6.2.3}%
-\contentsline {subsubsection}{\numberline {6.2.4}Intuition on the validity proofs}{15}{subsubsection.6.2.4}%
-\contentsline {paragraph}{From computation to polynomial}{16}{section*.2}%
-\contentsline {paragraph}{}{16}{section*.3}%
+\contentsline {subsubsection}{\numberline {6.2.4}Intuition on the validity proofs}{16}{subsubsection.6.2.4}%
+\contentsline {subsubsection}{\numberline {6.2.5}ZK rollups and videogames}{16}{subsubsection.6.2.5}%
 \contentsline {part}{III\hspace {1em}Appendix}{16}{part.3}%
-\contentsline {section}{\numberline {7}Merkle trees}{16}{section.7}%
+\contentsline {section}{\numberline {7}Merkle trees}{17}{section.7}%

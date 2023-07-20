@@ -1,9 +1,13 @@
 \documentclass[12pt]{article}
+
+
 \usepackage{graphicx} %for pictures
 \usepackage{listings} %for code blocks
-\usepackage{hyperref} %for hyperlink in ref and cite
-\usepackage{fullpage}
-\usepackage{parskip}
+\usepackage[colorlinks=true, linkcolor=darkblue, anchorcolor=darkblue, citecolor=darkblue, urlcolor=darkblue]{hyperref} %for hyperlink in ref and cite
+\usepackage{fullpage} %for smaller margins in the page
+\usepackage{parskip} %for spacing between paragraphs
+\usepackage{soul} %for strikethrougs
+\usepackage{nameref} %for references with names
 
 \graphicspath{ {../pics/} }
 
@@ -11,6 +15,7 @@
 \author{Lapo Falcone \\ lapofalcone@gmail.com}
 
 \begin{document}
+\definecolor{darkblue}{RGB}{0,0,150}
 \maketitle
 \tableofcontents
 
@@ -135,7 +140,7 @@ More recently a new kind of programmable blockchains has arisen, whose main expo
 The core concepts of a programmable blockchain like Ethereum are similar to the ones of a \textit{plain} one, with 2 main additions\footnote{Another evident difference of Ethereum is that it now uses proof of stake, but it is not important in this context.}:
 \begin{description}
     \item[Smart contracts] Blockchain wallets controlled by an immutable script.
-    \item[Account-based model] Nodes keep the blockchain state in a \textit{table} like the one in \ref{table:account_based_state}. A transaction can now be defined as an argument in a state transition function: 
+    \item[Account-based model] Nodes keep the blockchain state in a \textit{table} like the one in Table \ref{table:account_based_state}. A transaction can now be defined as an argument in a state transition function: 
     \[\mathcal{N} (state_{old}, transaction) = state_{new}\]
 \end{description}
 
@@ -216,7 +221,7 @@ In recent years a new framework that can help with both issues has emerged: bloc
 \newpage
 
 \part{Blockchain layer 2} \label{part:bl2}
-As we have seen in \ref{section:wbcnbuiv} layer 1 blockchains suffer from high fees and poor scalability.
+As we have seen in \nameref{section:wbcnbuiv} layer 1 blockchains suffer from high fees and poor scalability.
 
 This is a direct consequence of the blockchain trilemma \cite{blockchain_trilemma}, which states that we can have only 2 out of distribution, security and scalability.
 To try to tackle these issues layer 2 blockchains have been invented.
@@ -314,7 +319,7 @@ At this point, the user must to generate a cryptographic proof (generally a Merk
 Now it is possible to send the proof to the layer 1 smart contract, along with an address where to send the withdrawn assets.
 
 \subsubsection{L2 - L1 interaction} \label{subsubsection:l2l1i}
-The sequencers store the state of the rollup as a Merkle tree (see section \ref{section:merkle_trees}). The root of such tree is also stored in the layer 1 smart contract. \cite{optimistic_rollups}.
+The sequencers store the state of the rollup as a Merkle tree (see section \nameref{section:merkle_trees}). The root of such tree is also stored in the layer 1 smart contract. \cite{optimistic_rollups}.
 
 When a sequencer wants to send a batch to the layer 1 smart contract, it must send a transaction containing:
 \begin{itemize}
@@ -349,15 +354,17 @@ At this point, the challenging period begins, and other users can send fraud pro
     \label{figure:multi_round_fraud_proof}
 \end{figure}
 
+It is interesting to note that even a single honest participant to an optimistic rollup has the power to stop malicious activities by any number of other nodes.
+
 \subsubsection{Optimistic rollups and videogames} \label{subsubsection:orav}
 Optimistic rollups are a step in the right direction towards the use of the blockchain in videogames.
 
-Indeed they do not suffer from the transparency and fairness problems we discussed in section \ref{subsection:scav}, and, at the same time, they maintain more security and decentralization guarantees than sidechains, since they maintain a strict bound with the layer 1 blockchain.
+Indeed they do not suffer from the transparency and fairness problems we discussed in section \nameref{subsection:scav}, and, at the same time, they maintain more security and decentralization guarantees than sidechains, since they maintain a strict bound with the layer 1 blockchain.
 
 The main problem of the majority of the implementations of optimistic rollups are:
 \begin{description}
     \item[High fees] Even if fees are lower than using a layer 1 blockchains, the need to send all the transactions and their inputs in a batch (although compressed) as calldata, isn't enough to lower the fees enough for adoption in the video gaming world.
-    \item[Withdrawal time] As we have seen in section \ref{subsubsection:exiting_optimistic_rollup}, it takes a very long time (usually 7 days) to be able to withdraw the assets from an optimistic rollup. This doesn't pair well with the cross compatibility property, since different games will most likely run on different optimistic rollups implementations.
+    \item[Withdrawal time] As we have seen in section \nameref{subsubsection:exiting_optimistic_rollup}, it takes a very long time (usually 7 days) to be able to withdraw the assets from an optimistic rollup. This doesn't pair well with the cross compatibility property, since different games will most likely run on different optimistic rollups implementations.
 \end{description}
 
 \subsection{Zero-knowledge rollups} \label{subsection:zk_rollups}
@@ -372,7 +379,7 @@ Sequencers of ZK rollups must send a zero-knowledge proof along with the changes
 This change makes it so that it isn't required to store a compressed summary of the transactions' inputs on the layer 1 chain as calldata, greatly lowering the fees needed. Moreover, the layer 1 smart contract can immediately verify whether the changes are valid, so the challenge period can be completely removed.
 
 \subsubsection{Entering a ZK rollup} \label{subsubsection:entering_zk_rollup}
-The process to enter a ZK rollup is very similar to the one described in \ref{subsubsection:entering_optimistic_rollup}.
+The process to enter a ZK rollup is very similar to the one described in \nameref{subsubsection:entering_optimistic_rollup}.
 
 The user must deposit some assets in the layer 1 smart contract, a bridge will transfer the assets to the rollup. After the sequencer adds the transfer transaction to a batch, the user will be able to use his assets in the ZK rollup.
 
@@ -406,24 +413,33 @@ Similarly to optimistic rollups, the sequence must compute the Merkle tree of th
 
 To the layer 1 smart contract.
 
-When the smart contract receives the batch, it will execute the validity proof, check the old state and, if everything matches, update the rollup Merkle tree root in its storage.
+When the smart contract receives the batch, it will execute the validity proof, check the old state and, if everything matches, update the rollup Merkle tree root in its storage \cite{zk_rollups}.
 
 \subsubsection{Intuition on the validity proofs} \label{subsubsection:iotvp}
-Validity proofs are complex cryptographic objects which allow to demonstrate the truthfulness of a statement based on a computation in way less time than executing the full computation.
+Validity proofs are complex cryptographic objects that allow to demonstrate the truthfulness of a statement based on a computation in way less time than executing the full computation.
 
-\paragraph{From computation to polynomial}
-The first step towards these proofs is to create a process able to associate a computation with a polynomial.
+In the case of ZK rollups, the statement to prove is that, given the computation deriving from the list of transactions in the batch and the old state, we get to the proposed new state.
 
-To do so it is possible to convert the computation into an arithmetic circuit, which is a representation of the computation similar to a control flow graph. A circuit is made up of inputs, intermediate nodes, a root node and edges connecting the nodes.
+For costs reasons, it is not possible to run the full computation of the batch (it would defeat the purpose of ZK rollups), therefore we want to translate this problem into an easier-to-compute mathematical problem where the transactions become values to plug in a set of equations, so that these mathematical equations are satisfied.
 
-It is now possible to specify the inputs, and save the results after the operation specified in each node in a table, called trace.
+One way to do so is to use the PLONK scheme \cite{plonk}, or ZK-STARK \cite{zk-stark}.
 
-This trace will therefore contain numbers, which can be interpreted as points in a multidimensional space.
+\subsubsection{ZK rollups and videogames} \label{subsubsection:zkrav}
+ZK rollups share a lot of features with optimistic rollups:
+\begin{description}
+    \item[Improved scalability] ZK rollups help with blockchain scalability, by operating on a smaller blockchain and only communicating with the layer 1 blockchain in batches.
+    \item[Reduced layer 1 fees] ZK rollups share the fee of the layer 1 transactions among all the transactions in a batch.
+    \item[Transparency and fairness] In a ZK rollup context, operations still happen on a public blockchain with a consensus algorithm.
+    \item[Decentralization and security] These 2 are directly inherited from the layer 1 blockchain, thanks to validation proofs. 
+\end{description}
 
-It is therefore possible to build a polynomial with the lower degree possible that passes through all the points in the trace.
+Moreover, ZK rollups do not suffer from the 2 main problems identified in \nameref{subsubsection:orav}:
+\begin{description}
+    \item[\st{High fees}] ZK rollups further reduce the fees compared to optimistic rollups, since layer 2 transactions inputs must not be stored as calldata.
+    \item[\st{Withdrawal time}] ZK rollups, thanks to validity proofs, do not have a challenge period. Exiting a rollup takes as much time as waiting for the sequencer to update the layer 1 smart contract, and the smart contract transaction to be included in a block on layer 1.  
+\end{description}
 
-\paragraph{}
-
+For these reasons, ZK rollups are, in the majority of cases, the most suited layer 2 blockchain to implement videogames.
 
 \part{Appendix} \label{part:appendix}
 \section{Merkle trees} \label{section:merkle_trees}

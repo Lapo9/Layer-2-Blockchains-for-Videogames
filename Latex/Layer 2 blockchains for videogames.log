@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.7.17)  20 JUL 2023 01:15
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.7.17)  20 JUL 2023 16:00
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -119,6 +119,7 @@ File: puenc.def 2023-07-08 v7.01b Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
 ... no UTF-8 mapping file for font encoding PU
 )
+Package hyperref Info: Option `colorlinks' set `true' on input line 4050.
 Package hyperref Info: Hyper figures OFF on input line 4167.
 Package hyperref Info: Link nesting OFF on input line 4172.
 Package hyperref Info: Hyper index ON on input line 4175.
@@ -145,7 +146,7 @@ Package hyperref Info: Hyper figures OFF on input line 6051.
 Package hyperref Info: Link nesting OFF on input line 6056.
 Package hyperref Info: Hyper index ON on input line 6059.
 Package hyperref Info: backreferencing OFF on input line 6066.
-Package hyperref Info: Link coloring OFF on input line 6071.
+Package hyperref Info: Link coloring ON on input line 6069.
 Package hyperref Info: Link coloring with OCG OFF on input line 6076.
 Package hyperref Info: PDF/A mode OFF on input line 6081.
  (p:/Program Files/texlive/2023/texmf-dist/tex/latex/base/atbegshi-ltx.sty
@@ -178,60 +179,93 @@ Package: fullpage 1999/02/23 1.1 (PWD)
 \FP@margin=\skip51
 ) (p:/Program Files/texlive/2023/texmf-dist/tex/latex/parskip/parskip.sty
 Package: parskip 2021-03-14 v2.0h non-zero parskip adjustments
-) (p:/Program Files/texlive/2023/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+) (p:/Program Files/texlive/2023/texmf-dist/tex/generic/soul/soul.sty
+Package: soul 2023-06-14 v3.1 Permit use of UTF-8 characters in soul (HO)
+ (p:/Program Files/texlive/2023/texmf-dist/tex/generic/soul/soul-ori.sty
+Package: soul-ori 2023-06-14 v3.1 letterspacing/underlining (mf)
+\SOUL@word=\toks19
+\SOUL@lasttoken=\toks20
+\SOUL@syllable=\toks21
+\SOUL@cmds=\toks22
+\SOUL@buffer=\toks23
+\SOUL@token=\toks24
+\SOUL@syllgoal=\dimen151
+\SOUL@syllwidth=\dimen152
+\SOUL@charkern=\dimen153
+\SOUL@hyphkern=\dimen154
+\SOUL@dimen=\dimen155
+\SOUL@dimeni=\dimen156
+\SOUL@minus=\count279
+\SOUL@comma=\count280
+\SOUL@apo=\count281
+\SOUL@grave=\count282
+\SOUL@spaceskip=\skip52
+\SOUL@ttwidth=\dimen157
+\SOUL@uldp=\dimen158
+\SOUL@ulht=\dimen159
+) (p:/Program Files/texlive/2023/texmf-dist/tex/generic/etexcmds/etexcmds.sty
+Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
+)) (p:/Program Files/texlive/2023/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2023-04-19 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count279
+\l__color_backend_stack_int=\count283
 \l__pdf_internal_box=\box53
 ) (./Layer 2 blockchains for videogames.aux)
 \openout1 = `"Layer 2 blockchains for videogames.aux"'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
  (p:/Program Files/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count280
-\scratchdimen=\dimen151
+\scratchcounter=\count284
+\scratchdimen=\dimen160
 \scratchbox=\box54
-\nofMPsegments=\count281
-\nofMParguments=\count282
-\everyMPshowfont=\toks19
-\MPscratchCnt=\count283
-\MPscratchDim=\dimen152
-\MPnumerator=\count284
-\makeMPintoPDFobject=\count285
-\everyMPtoPDFconversion=\toks20
+\nofMPsegments=\count285
+\nofMParguments=\count286
+\everyMPshowfont=\toks25
+\MPscratchCnt=\count287
+\MPscratchDim=\dimen161
+\MPnumerator=\count288
+\makeMPintoPDFobject=\count289
+\everyMPtoPDFconversion=\toks26
 ) (p:/Program Files/texlive/2023/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
  (p:/Program Files/texlive/2023/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-\c@lstlisting=\count286
-Package hyperref Info: Link coloring OFF on input line 13.
+\c@lstlisting=\count290
+ (p:/Program Files/texlive/2023/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2022/01/06 v1.3d Standard LaTeX Color (DPC)
+ (p:/Program Files/texlive/2023/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package color Info: Driver file: pdftex.def on input line 149.
+ (p:/Program Files/texlive/2023/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+Package hyperref Info: Link coloring ON on input line 17.
  (./Layer 2 blockchains for videogames.out) (./Layer 2 blockchains for videogames.out)
 \@outlinefile=\write3
 \openout3 = `"Layer 2 blockchains for videogames.out"'.
 
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <14.4> on input line 15.
+(Font)              <14.4> on input line 20.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 15.
+(Font)              <7> on input line 20.
  (./Layer 2 blockchains for videogames.toc
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <12> on input line 3.
@@ -247,63 +281,78 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 
  [2]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 40.
+(Font)              <5> on input line 45.
  [3] [4{p:/Program Files/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] [5]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [6] [7] [8] [9] [10] [11] [12]
-<../pics/multi_round_fraud_proof.png, id=249, 687.66pt x 114.756pt>
+<../pics/multi_round_fraud_proof.png, id=254, 687.66pt x 114.756pt>
 File: ../pics/multi_round_fraud_proof.png Graphic file (type png)
 <use ../pics/multi_round_fraud_proof.png>
-Package pdftex.def Info: ../pics/multi_round_fraud_proof.png  used on input line 347.
+Package pdftex.def Info: ../pics/multi_round_fraud_proof.png  used on input line 352.
 (pdftex.def)             Requested size: 469.75502pt x 78.39198pt.
  [13 <../pics/multi_round_fraud_proof.png>]
-Overfull \hbox (11.7247pt too wide) in paragraph at lines 366--367
+Overfull \hbox (11.7247pt too wide) in paragraph at lines 373--374
 []\OT1/cmr/m/n/12 As in op-ti-mistic rollups, this mech-a-nism im-proves scal-a-bil-ity and per-for-mance of the blockchain,
  []
 
-[14] [15] [16] (./Layer 2 blockchains for videogames.bbl
-Underfull \hbox (badness 1490) in paragraph at lines 34--37
-[]\OT1/cmr/m/n/12 minimalsm (2023).  State chan-nels.  []$\OT1/cmtt/m/n/12 https : / / ethereum . org / en /
+[14] [15]
+Overfull \hbox (73.47568pt too wide) in paragraph at lines 425--426
+[]\OT1/cmr/m/n/12 One way to do so is to use the PLONK scheme [[]], or ZK-STARK [[]]. 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 34--37
+Overfull \hbox (1.08728pt too wide) in paragraph at lines 430--431
+[]\OT1/cmr/m/n/12 ZK rollups help with blockchain scal-a-bil-ity, by op-er-at-ing on a smaller
+ []
+
+[16] [17] (./Layer 2 blockchains for videogames.bbl
+Overfull \hbox (1104.9234pt too wide) in paragraph at lines 4--7
+\OT1/cmtt/m/n/12 363114095103064030064081081023094100127044006079024031064087068000110114071024086085099050107020030120050064071117122076125110058042000066077116072005081004117079107014011081121123093096113086119115023120010018023106006006004081102124075086125100111097 &
+ []
+
+
+Underfull \hbox (badness 1490) in paragraph at lines 49--52
+[]\OT1/cmr/m/n/12 minimalsm (2023).  State chan-nels.  [][]$\OT1/cmtt/m/n/12 https : / / ethereum . org / en /
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 49--52
 \OT1/cmtt/m/n/12 developers / docs / scaling / state-[]channels / # : [] : text = State % 20channels % 20allow %
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 54--57
+Underfull \hbox (badness 10000) in paragraph at lines 69--72
 []\OT1/cmr/m/n/12 Pomerantz, O. (2021).  Merkle proofs for of-fline
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 54--57
-\OT1/cmr/m/n/12 data in-tegrity.  []$\OT1/cmtt/m/n/12 https : / / ethereum . org / en / developers / tutorials /
+Underfull \hbox (badness 10000) in paragraph at lines 69--72
+\OT1/cmr/m/n/12 data in-tegrity.  [][]$\OT1/cmtt/m/n/12 https : / / ethereum . org / en / developers / tutorials /
  []
 
-) [17] (./Layer 2 blockchains for videogames.aux)
+[18]) [19] (./Layer 2 blockchains for videogames.aux)
  ***********
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-06-30>
  ***********
 Package rerunfilecheck Info: File `"Layer 2 blockchains for videogames".out' has not changed.
-(rerunfilecheck)             Checksum: 8095ADCBD7BD67BD69A5FA6AD5FF3B7B;4654.
+(rerunfilecheck)             Checksum: BAADC18B8B086B346DFC1C401897FC79;4856.
  ) 
 Here is how much of TeX's memory you used:
- 9970 strings out of 475237
- 156429 string characters out of 5761535
- 1929238 words of memory out of 5000000
- 31040 multiletter control sequences out of 15000+600000
- 564743 words of font info for 58 fonts, out of 8000000 for 9000
+ 10315 strings out of 475237
+ 162321 string characters out of 5761535
+ 1930238 words of memory out of 5000000
+ 31362 multiletter control sequences out of 15000+600000
+ 565056 words of font info for 59 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,10n,79p,675b,482s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,10n,79p,675b,526s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <p:/Program Files/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><p:/Program Files/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><p:/Program Files/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><p:/Program Files/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><p:/Program Files/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><p:/Program Files/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><p:/Program Files/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><p:/Program Files/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><p:/Program Files/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><p:/Program Files/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><p:/Program Files/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb><p:/Program Files/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb><p:/Program Files/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on "Layer 2 blockchains for videogames.pdf" (17 pages, 387417 bytes).
+Output written on "Layer 2 blockchains for videogames.pdf" (19 pages, 393523 bytes).
 PDF statistics:
- 377 PDF objects out of 1000 (max. 8388607)
- 326 compressed objects within 4 object streams
- 77 named destinations out of 1000 (max. 500000)
- 222 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 406 PDF objects out of 1000 (max. 8388607)
+ 353 compressed objects within 4 object streams
+ 81 named destinations out of 1000 (max. 500000)
+ 230 words of extra memory for PDF output out of 10000 (max. 10000000)
 

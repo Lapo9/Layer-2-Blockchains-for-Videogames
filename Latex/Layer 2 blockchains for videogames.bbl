@@ -1,5 +1,10 @@
 \begin{thebibliography}{}
 
+\bibitem[Aleksander~Berentsen, 2022]{zk-stark}
+Aleksander~Berentsen, Jeremias~Lenzi, R.~N. (2022).
+\newblock A walk-through of a simple zk-stark proof.
+\newblock \url{https://deliverypdf.ssrn.com/delivery.php?ID=363114095103064030064081081023094100127044006079024031064087068000110114071024086085099050107020030120050064071117122076125110058042000066077116072005081004117079107014011081121123093096113086119115023120010018023106006006004081102124075086125100111097&EXT=pdf&INDEX=TRUE}.
+
 \bibitem[alemanaa, 2022]{ethereum_bridges}
 alemanaa (2022).
 \newblock Bridges.
@@ -9,6 +14,11 @@ alemanaa (2022).
 Buterin, V. (2014).
 \newblock Ethereum: A next-generation smart contract and decentralized application platform.
 \newblock {\em Ethereum website}, pages 9--10.
+
+\bibitem[Buterin, 2019]{plonk}
+Buterin, V. (2019).
+\newblock Understanding plonk.
+\newblock \url{https://vitalik.ca/general/2019/09/22/plonk.html}.
 
 \bibitem[Community, 2022]{ethereum_layer2}
 Community (2022).
@@ -24,6 +34,11 @@ Community (2023).
 corwintines (2023).
 \newblock Scaling.
 \newblock \url{https://ethereum.org/en/developers/docs/scaling/}.
+
+\bibitem[d1onys1us, 2023]{zk_rollups}
+d1onys1us (2023).
+\newblock Zero-knowledge rollups.
+\newblock \url{https://ethereum.org/en/developers/docs/scaling/zk-rollups/}.
 
 \bibitem[David~Easley, 2018]{bitcoin_fees}
 David~Easley, Maureen~O'Hara, S.~B. (2018).
