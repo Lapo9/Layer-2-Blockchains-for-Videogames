@@ -164,6 +164,10 @@ INPUT ../pics/multi_round_fraud_proof.png
 INPUT ../pics/multi_round_fraud_proof.png
 INPUT ../pics/multi_round_fraud_proof.png
 INPUT ../pics/multi_round_fraud_proof.png
+INPUT ../pics/merkle_proof.png
+INPUT ../pics/merkle_proof.png
+INPUT ../pics/merkle_proof.png
+INPUT ../pics/merkle_proof.png
 INPUT ./Layer 2 blockchains for videogames.bbl
 INPUT ./Layer 2 blockchains for videogames.bbl
 INPUT Layer 2 blockchains for videogames.bbl
@@ -179,6 +183,7 @@ INPUT p:/Program Files/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cm
 INPUT p:/Program Files/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb
 INPUT p:/Program Files/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb
 INPUT p:/Program Files/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
+INPUT p:/Program Files/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb
 INPUT p:/Program Files/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb
 INPUT p:/Program Files/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb
 INPUT p:/Program Files/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb

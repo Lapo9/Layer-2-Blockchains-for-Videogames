@@ -1,0 +1,46 @@
+This is BibTeX, Version 0.99d (TeX Live 2023)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: Layer 2 blockchains for videogames.aux
+The style file: apalike.bst
+Database file #1: biblio.bib
+You've used 17 entries,
+            1935 wiz_defined-function locations,
+            550 strings with 6052 characters,
+and the built_in function-call counts, 4492 in all, are:
+= -- 458
+> -- 119
+< -- 19
++ -- 38
+- -- 34
+* -- 277
+:= -- 872
+add.period$ -- 51
+call.type$ -- 17
+change.case$ -- 102
+chr.to.int$ -- 17
+cite$ -- 17
+duplicate$ -- 198
+empty$ -- 300
+format.name$ -- 51
+if$ -- 847
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 6
+newline$ -- 88
+num.names$ -- 51
+pop$ -- 64
+preamble$ -- 1
+purify$ -- 102
+quote$ -- 0
+skip$ -- 174
+stack$ -- 0
+substring$ -- 225
+swap$ -- 14
+text.length$ -- 2
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 102
+warning$ -- 0
+while$ -- 37
+width$ -- 0
+write$ -- 208

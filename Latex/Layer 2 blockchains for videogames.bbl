@@ -20,16 +20,6 @@ Buterin, V. (2019).
 \newblock Understanding plonk.
 \newblock \url{https://vitalik.ca/general/2019/09/22/plonk.html}.
 
-\bibitem[Community, 2022]{ethereum_layer2}
-Community (2022).
-\newblock Ethereum layer 2.
-\newblock \url{https://ethereum.org/en/layer-2/}.
-
-\bibitem[Community, 2023]{optimistic_rollups}
-Community (2023).
-\newblock Optimistic rollups.
-\newblock \url{https://ethereum.org/en/developers/docs/scaling/optimistic-rollups/}.
-
 \bibitem[corwintines, 2023]{ethereum_scaling}
 corwintines (2023).
 \newblock Scaling.
@@ -44,6 +34,16 @@ d1onys1us (2023).
 David~Easley, Maureen~O'Hara, S.~B. (2018).
 \newblock From mining to markets: The evolution of bitcoin transaction fees.
 \newblock {\em Cornell University}.
+
+\bibitem[EthereumCommunity, 2022]{ethereum_layer2}
+EthereumCommunity (2022).
+\newblock Ethereum layer 2.
+\newblock \url{https://ethereum.org/en/layer-2/}.
+
+\bibitem[EthereumCommunity, 2023]{optimistic_rollups}
+EthereumCommunity (2023).
+\newblock Optimistic rollups.
+\newblock \url{https://ethereum.org/en/developers/docs/scaling/optimistic-rollups/}.
 
 \bibitem[minimalsm, 2023]{ethereum_state_channels}
 minimalsm (2023).
@@ -74,6 +74,11 @@ Pomerantz, O. (2021).
 Seth~Gilbert, N. A.~L. (2012).
 \newblock Perspective on the cap theorem.
 \newblock {\em Massachussets Institute of Technology}.
+
+\bibitem[StarknetCommunity, 2022]{starknet_actors}
+StarknetCommunity (2022).
+\newblock Starknet's structure: Sequencers, provers, and nodes.
+\newblock \url{https://book.starknet.io/chapter_4/topology.html}.
 
 \bibitem[Zohar, 2015]{bitcoin_full_nodes}
 Zohar, A. (2015).

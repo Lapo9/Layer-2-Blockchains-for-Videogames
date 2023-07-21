@@ -24,5 +24,11 @@
 \contentsline {subsubsection}{\numberline {6.2.3}L2 - L1 interaction}{15}{subsubsection.6.2.3}%
 \contentsline {subsubsection}{\numberline {6.2.4}Intuition on the validity proofs}{16}{subsubsection.6.2.4}%
 \contentsline {subsubsection}{\numberline {6.2.5}ZK rollups and videogames}{16}{subsubsection.6.2.5}%
-\contentsline {part}{III\hspace {1em}Appendix}{16}{part.3}%
-\contentsline {section}{\numberline {7}Merkle trees}{17}{section.7}%
+\contentsline {part}{III\hspace {1em}Starknet}{17}{part.3}%
+\contentsline {section}{\numberline {7}Starknet actors}{17}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Sequencers}{17}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Provers}{17}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Nodes}{18}{subsection.7.3}%
+\contentsline {part}{IV\hspace {1em}Appendix}{19}{part.4}%
+\contentsline {section}{\numberline {8}Merkle trees}{19}{section.8}%
+\contentsline {subsection}{\numberline {8.1}Merkle proof}{19}{subsection.8.1}%

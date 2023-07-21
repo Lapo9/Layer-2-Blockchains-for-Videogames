@@ -219,7 +219,6 @@ There are 2 main issues with doing so:
 In recent years a new framework that can help with both issues has emerged: blockchain layer 2 \cite{ethereum_scaling}.
 
 \newpage
-
 \part{Blockchain layer 2} \label{part:bl2}
 As we have seen in \nameref{section:wbcnbuiv} layer 1 blockchains suffer from high fees and poor scalability.
 
@@ -340,7 +339,7 @@ At this point, the challenging period begins, and other users can send fraud pro
     \item[Single round] In this scheme all the transactions' inputs being part of a batch must be stored (as calldata) in the layer 1 smart contract. Since the smart contract has all the transactions and their inputs, it can replay them and verify whether the new state Merkle root matches with the one sent by the sequencer.
     \item[Multi round] This proving mechanism is more complex but also more efficient. In this case, only the Merkle root of the summary of transactions is required be stored as calldata.
                         
-                        The process to prove fraud consists of a dialogue between the sequencer and the challenger, supervised by a layer 1 smart contract. At each step the asserter must split computation performed in a batch into 2 equal halves and state the output\footnote{With output here it is intended the hash of the full state of the computation till this point} of each one of the 2 halves. The challenger can decide which half he wants to challenge.
+                        The process to prove fraud consists of a dialogue between the sequencer (asserter) and the challenger, supervised by a layer 1 smart contract. At each step the asserter must split computation performed in a batch into 2 equal halves and state the output\footnote{With output here it is intended the hash of the full state of the computation till this point} of each one of the 2 halves. The challenger can decide which half he wants to challenge.
                         This process goes on until only a single instruction remains in the asserter computation. At this point, both the asserter and the challenger must send their prediction for the outcome of that instruction, which is executed by the layer 1 smart contract, which can easily find out who is lying. This process can be visualized in Figure \ref{figure:multi_round_fraud_proof}.
 
                         Since we have the Merkle root of the batch and all the transactions in the layer 2 blockchain are available to other users, the challenger can prove whether a specific part of the computation shouldn't be there by hashing all the transactions that were actually included in the block. 
@@ -350,7 +349,7 @@ At this point, the challenging period begins, and other users can send fraud pro
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{multi_round_fraud_proof}
-    \caption{The multi round fraud proof mechanism visualized}
+    \caption{The multi round fraud proof mechanism visualized.}
     \label{figure:multi_round_fraud_proof}
 \end{figure}
 
@@ -393,7 +392,7 @@ As soon as this transaction is added to a batch by the sequencer, the user must 
 Then he can send a withdrawal request to the layer 1 smart contract with the following information:
 \begin{itemize}
     \item The Merkle proof.
-    \item The exit transaction data.
+    \item The exit transaction input data.
     \item The Merkle root of the transaction batch containing the exit transaction.
     \item A layer 1 address where to deposit the withdrawn assets.
 \end{itemize}
@@ -403,7 +402,7 @@ The layer 1 smart contract can hash the transaction data and use the Merkle proo
 This process has a way lower latency than the one used for optimistic rollups, because the challenging period doesn't exist in ZK rollups.
 
 \subsubsection{L2 - L1 interaction} \label{subsubsection:zk_l2l1i}
-Similarly to optimistic rollups, the sequence must compute the Merkle tree of the state of the rollup, and send its root along with:
+Similarly to optimistic rollups, the sequencers must compute the Merkle tree of the state of the rollup, and send its root along with:
 \begin{itemize}
     \item The Merkle root old state. 
     \item The transactions (this time without inputs).
@@ -411,16 +410,16 @@ Similarly to optimistic rollups, the sequence must compute the Merkle tree of th
     \item The Merkle root of the transactions in the batch. 
 \end{itemize} 
 
-To the layer 1 smart contract.
+to the layer 1 smart contract.
 
 When the smart contract receives the batch, it will execute the validity proof, check the old state and, if everything matches, update the rollup Merkle tree root in its storage \cite{zk_rollups}.
 
 \subsubsection{Intuition on the validity proofs} \label{subsubsection:iotvp}
-Validity proofs are complex cryptographic objects that allow to demonstrate the truthfulness of a statement based on a computation in way less time than executing the full computation.
+Validity proofs are complex cryptographic objects that allow to demonstrate the truthfulness of a computation-based statement in way less time than executing the full computation.
 
 In the case of ZK rollups, the statement to prove is that, given the computation deriving from the list of transactions in the batch and the old state, we get to the proposed new state.
 
-For costs reasons, it is not possible to run the full computation of the batch (it would defeat the purpose of ZK rollups), therefore we want to translate this problem into an easier-to-compute mathematical problem where the transactions become values to plug in a set of equations, so that these mathematical equations are satisfied.
+For costs reasons, it is not possible to run the full computation of the batch (it would defeat the purpose of ZK rollups), therefore we want to translate this problem into an easier-to-compute mathematical problem, where the transactions become values to plug in a set of equations, so that these mathematical equations are satisfied.
 
 One way to do so is to use the PLONK scheme \cite{plonk}, or ZK-STARK \cite{zk-stark}.
 
@@ -439,11 +438,94 @@ Moreover, ZK rollups do not suffer from the 2 main problems identified in \namer
     \item[\st{Withdrawal time}] ZK rollups, thanks to validity proofs, do not have a challenge period. Exiting a rollup takes as much time as waiting for the sequencer to update the layer 1 smart contract, and the smart contract transaction to be included in a block on layer 1.  
 \end{description}
 
-For these reasons, ZK rollups are, in the majority of cases, the most suited layer 2 blockchain to implement videogames.
+For these reasons, ZK rollups are, in the majority of cases, the most suited layer 2 blockchain type to implement videogames.
 
+\newpage
+\part{Starknet} \label{part:starknet}
+Starknet is one of the most successful implementations of ZK rollups. It uses Ethereum as layer 1.
+
+\section{Starknet actors} \label{section:starknet_actors}
+Starknet organizes its participants in various roles \cite{starknet_actors}. Each role carries out one of the tasks needed to make ZK rollups work.
+
+At the moment some of the roles present in Starknet are centralized for development reasons, but the core concepts of each role do not make any centralization assumption, and in the future will be decentralized.
+
+\subsection{Sequencers} \label{subsection:sequencers}
+Sequencers can be compared miners, since their tasks are:
+\begin{description}
+    \item[Aggregation] They have to collect and store in a pool transactions from users.
+    \item[Batching] They have to group transactions together into batches, and decide when to close a batch. This decision can be taken based on the number of transactions received, or on the time elapsed since the last batch.
+    \item[Execution] Once they form a batch, they have to actually execute the transactions to update the state.
+\end{description}
+
+At this point, sequencers have to pass the block they've created to provers.
+
+\subsection{Provers} \label{subsection:provers}
+Prover must supervise the work of sequencers and communicate with the layer 1 smart contract:
+\begin{description}
+    \item[Execution check] Provers execute some sampled transactions they received in a block a second time, to check sequencers work.
+    \item[Proof generation] Provers have the task to generate the zero-knowledge proof to demonstrate a correct handling of the execution of the transactions.
+    \item[Communicating with layer 1] Finally they have to send the batch of transactions and the proof to the layer 1 smart contract.
+\end{description}
+
+\subsection{Nodes} \label{subsection:nodes}
+Nodes are the auditors of Starknet. Their tasks are:
+\begin{description}
+    \item[Replaying] Nodes can replay old transactions to ensure their correctness. 
+    \item[Storage] Nodes can store the blocks produced by the sequencers and provers, to guarantee availability in the layer 2 blockchain.
+    \item[Checking proofs] Nodes can also check the proofs provided by the provers. This is a cheaper way compared to replaying transactions to guarantee the honesty of the provers.  
+\end{description}
+
+\newpage
 \part{Appendix} \label{part:appendix}
 \section{Merkle trees} \label{section:merkle_trees}
-\cite{ethereum_merkle_trees} \cite{ethereum_merkle_proof}
+A Merkle tree is a binary tree data structure where \cite{ethereum_merkle_trees}:
+\begin{description}
+    \item[Leaves] A leaf is labeled with the hash of a block of data.
+    \item[Internal nodes] An internal node is labelled with the hash of the label of its 2 children.
+\end{description}
+
+This kind of structure is very useful in distributed systems, because it allows to verify data integrity very efficiently.
+
+Indeed, to check data integrity, it is sufficient to compare the hash contained in the roots of the Merkle trees, since it is dependant on all of its children (direct and indirect).
+Moreover, in case the roots don't match, it is possible to rapidly identify the corrupted data, by descending in the tree and following the paths where the hashes do not correspond.
+
+In the blockchain context Merkle trees are extensively employed, for example:
+\begin{description}
+    \item[Block headers] Block headers contain the root of the Merkle tree built with all the transactions inside the block.
+    \item[Simple payment verification] The presence of the Merkle root in the header of blocks, allow for a lightweight algorithm to verify the existence of a transaction \verb|T|:
+        \begin{enumerate}
+            \item The lightweight node \verb|L| fetches only the headers of all the blocks of the blockchain from full nodes (headers are orders of magnitude smaller than full blocks).
+            \item \verb|L| asks the Merkle proof (see section \ref{subsection:merkle_proof}) for the transaction \verb|T| to full nodes.
+            \item Now \verb|L| can easily verify whether the Merkle proof is valid, by simply calculating the Merkle root and searching for it in one of the headers he previously fetched.
+        \end{enumerate} 
+\end{description}
+
+\subsection{Merkle proof} \label{subsection:merkle_proof}
+A Merkle proof is a cryptographically sound demonstration that a certain item belongs to a particular Merkle tree whose root is known.
+
+If a verifier \verb|V| wants proof from \verb|W| that item \verb|C| is part of the Merkle tree \verb|M| whose root is known, it can ask \verb|W| to send, for each level of \verb|M|, the \textit{missing children}.
+
+Let's take the example of Figure \ref{figure:merkle_proof}:
+\begin{enumerate}
+    \item \verb|W| sent to \verb|V|: \(<D, H_{A-B}, H_{E-H}>\).
+    \item Now \verb|V| has all the information compute \(H_{C-D} = hash(C \: . \: D)\).
+    \item Now \verb|V| has all the information compute \(H_{A-D} = hash(H_{A-B} \: . \: H_{C-D})\).
+    \item Finally \verb|V| has all the information compute the Merkle root \(H_{A-H} = hash(H_{A-D} \: . \: H_{E-H})\).
+    \item At this point \verb|V| can verify if the known Merkle root matches with \(H_{A-H}\).
+\end{enumerate}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{merkle_proof} 
+    \caption{An example of a Merkle proof from \cite{ethereum_merkle_proof}.}
+    \label{figure:merkle_proof}
+\end{figure}
+
+This works because \verb|W| cannot produce fake \textit{missing children} in order to obtain a desired root, since the hash function is non-invertible.
+
+The usefulness of Merkle proofs lies in the fact that it is sufficient to exchange an amount of information that is logarithmic compared to the number of items in the set.
+
+In the previous example, only 3 items were exchanged: \(<D, H_{A-B}, H_{E-H}>\). If data wasn't organized in a Merkle tree, all the items \(<A, B, D, E, F, G, H\) should have been exchanged to compute the final hash.
 
 \newpage
 \bibliographystyle{apalike}

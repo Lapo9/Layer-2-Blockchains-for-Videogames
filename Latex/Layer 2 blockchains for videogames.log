@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.7.17)  20 JUL 2023 16:00
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.7.17)  21 JUL 2023 02:17
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -287,27 +287,38 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [6] [7] [8] [9] [10] [11] [12]
-<../pics/multi_round_fraud_proof.png, id=254, 687.66pt x 114.756pt>
+<../pics/multi_round_fraud_proof.png, id=284, 687.66pt x 114.756pt>
 File: ../pics/multi_round_fraud_proof.png Graphic file (type png)
 <use ../pics/multi_round_fraud_proof.png>
-Package pdftex.def Info: ../pics/multi_round_fraud_proof.png  used on input line 352.
+Package pdftex.def Info: ../pics/multi_round_fraud_proof.png  used on input line 351.
 (pdftex.def)             Requested size: 469.75502pt x 78.39198pt.
  [13 <../pics/multi_round_fraud_proof.png>]
-Overfull \hbox (11.7247pt too wide) in paragraph at lines 373--374
+Overfull \hbox (11.7247pt too wide) in paragraph at lines 372--373
 []\OT1/cmr/m/n/12 As in op-ti-mistic rollups, this mech-a-nism im-proves scal-a-bil-ity and per-for-mance of the blockchain,
  []
 
 [14] [15]
-Overfull \hbox (73.47568pt too wide) in paragraph at lines 425--426
+Overfull \hbox (73.47568pt too wide) in paragraph at lines 424--425
 []\OT1/cmr/m/n/12 One way to do so is to use the PLONK scheme [[]], or ZK-STARK [[]]. 
  []
 
 
-Overfull \hbox (1.08728pt too wide) in paragraph at lines 430--431
+Overfull \hbox (1.08728pt too wide) in paragraph at lines 429--430
 []\OT1/cmr/m/n/12 ZK rollups help with blockchain scal-a-bil-ity, by op-er-at-ing on a smaller
  []
 
-[16] [17] (./Layer 2 blockchains for videogames.bbl
+[16] [17]
+Overfull \hbox (1.15398pt too wide) in paragraph at lines 475--476
+\OT1/cmr/m/n/12 cheaper way com-pared to re-play-ing trans-ac-tions to guar-an-tee the hon-esty of the provers. 
+ []
+
+[18] [19]
+<../pics/merkle_proof.png, id=344, 566.115pt x 330.23375pt>
+File: ../pics/merkle_proof.png Graphic file (type png)
+<use ../pics/merkle_proof.png>
+Package pdftex.def Info: ../pics/merkle_proof.png  used on input line 519.
+(pdftex.def)             Requested size: 469.75502pt x 274.02841pt.
+ [20 <../pics/merkle_proof.png>] (./Layer 2 blockchains for videogames.bbl
 Overfull \hbox (1104.9234pt too wide) in paragraph at lines 4--7
 \OT1/cmtt/m/n/12 363114095103064030064081081023094100127044006079024031064087068000110114071024086085099050107020030120050064071117122076125110058042000066077116072005081004117079107014011081121123093096113086119115023120010018023106006006004081102124075086125100111097 &
  []
@@ -332,27 +343,27 @@ Underfull \hbox (badness 10000) in paragraph at lines 69--72
 \OT1/cmr/m/n/12 data in-tegrity.  [][]$\OT1/cmtt/m/n/12 https : / / ethereum . org / en / developers / tutorials /
  []
 
-[18]) [19] (./Layer 2 blockchains for videogames.aux)
+[21]) [22] (./Layer 2 blockchains for videogames.aux)
  ***********
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-06-30>
  ***********
 Package rerunfilecheck Info: File `"Layer 2 blockchains for videogames".out' has not changed.
-(rerunfilecheck)             Checksum: BAADC18B8B086B346DFC1C401897FC79;4856.
+(rerunfilecheck)             Checksum: 1435ABD3DC001DFA4145F5EB77C0397A;5488.
  ) 
 Here is how much of TeX's memory you used:
- 10315 strings out of 475237
- 162321 string characters out of 5761535
+ 10360 strings out of 475237
+ 163066 string characters out of 5761535
  1930238 words of memory out of 5000000
- 31362 multiletter control sequences out of 15000+600000
+ 31388 multiletter control sequences out of 15000+600000
  565056 words of font info for 59 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,10n,79p,675b,526s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<p:/Program Files/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><p:/Program Files/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><p:/Program Files/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><p:/Program Files/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><p:/Program Files/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><p:/Program Files/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><p:/Program Files/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><p:/Program Files/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><p:/Program Files/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><p:/Program Files/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><p:/Program Files/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb><p:/Program Files/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb><p:/Program Files/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on "Layer 2 blockchains for videogames.pdf" (19 pages, 393523 bytes).
+ 75i,10n,79p,675b,524s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<p:/Program Files/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><p:/Program Files/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><p:/Program Files/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><p:/Program Files/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><p:/Program Files/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><p:/Program Files/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><p:/Program Files/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><p:/Program Files/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><p:/Program Files/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><p:/Program Files/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><p:/Program Files/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><p:/Program Files/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb><p:/Program Files/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb><p:/Program Files/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
+Output written on "Layer 2 blockchains for videogames.pdf" (22 pages, 425783 bytes).
 PDF statistics:
- 406 PDF objects out of 1000 (max. 8388607)
- 353 compressed objects within 4 object streams
- 81 named destinations out of 1000 (max. 500000)
- 230 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 473 PDF objects out of 1000 (max. 8388607)
+ 412 compressed objects within 5 object streams
+ 100 named destinations out of 1000 (max. 500000)
+ 283 words of extra memory for PDF output out of 10000 (max. 10000000)
 
