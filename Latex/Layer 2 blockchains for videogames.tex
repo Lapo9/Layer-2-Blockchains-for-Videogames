@@ -1,4 +1,4 @@
-\documentclass[12pt]{article}
+\documentclass[11pt]{article}
 
 
 \usepackage{graphicx} %for pictures
@@ -8,14 +8,30 @@
 \usepackage{parskip} %for spacing between paragraphs
 \usepackage{soul} %for strikethrougs
 \usepackage{nameref} %for references with names
+\usepackage{bigfoot} %for verbatim in footnotes
 
 \graphicspath{ {../pics/} }
+\interfootnotelinepenalty = 10000 %avoid footnotes from being split into 2 pages
+
+\lstdefinelanguage{terminal}{
+    backgroundcolor=\color{lightgray},
+    basicstyle=\scriptsize\ttfamily,
+    morecomment=[l]{\#},
+    commentstyle=\color{darkgreen},
+    keywords={python3.9,curl,source,sudo,pip,starknet,cd,git,cargo,nano,export},
+    keywordstyle=\bf,
+    breaklines=true,
+    breakindent=40pt,
+    literate={-}{-}1
+}
 
 \title{Layer 2 blockchains for videogames}
 \author{Lapo Falcone \\ lapofalcone@gmail.com}
 
 \begin{document}
 \definecolor{darkblue}{RGB}{0,0,150}
+\definecolor{lightgray}{RGB}{246,246,246}
+\definecolor{darkgreen}{RGB}{0,150,0}
 \maketitle
 \tableofcontents
 
@@ -474,6 +490,135 @@ Nodes are the auditors of Starknet. Their tasks are:
     \item[Storage] Nodes can store the blocks produced by the sequencers and provers, to guarantee availability in the layer 2 blockchain.
     \item[Checking proofs] Nodes can also check the proofs provided by the provers. This is a cheaper way compared to replaying transactions to guarantee the honesty of the provers.  
 \end{description}
+
+\section{Starknet setup} \label{section:starknet_setup}
+Users can interact with Starknet via a CLI available for Linux and MacOS. We are going to see how to create a smart contract and interact with it in Linux:
+
+\subsection{Prerequisites} \label{subsection:prerequisites}
+We are going to work on a clean installation of Ubuntu 22.04.2 LTS, installed on a virtual machine in VirtualBox.
+
+\subsection{Install Python3.9}
+As of July 2023, Starknet CLI can work with Python3.9, but not with Python3.10 yet. Since Python3.10 is the default version on Ubuntu 22.04.2, we must install Python3.9 and create a virtual environment for it.
+\begin{lstlisting}[language=terminal]
+    sudo apt update
+    sudo apt install software-properties-common
+    sudo add-apt-repository ppa:deadsnakes/ppa #Python3.9 is not directly available
+    sudo apt install python3.9
+
+    python3.9 --version #should return Python 3.9.1x
+\end{lstlisting}
+
+Then we have to install some Python3.9 modules:
+\begin{lstlisting}[language=terminal]
+    sudo apt-get install python3.9-distutils #necessary to install some other modules
+    sudo apt-get install python3.9-dev #necessary to install some other modules
+    sudo apt-get install python3.9-venv #to create virtual environments
+\end{lstlisting}
+
+Now we can create the virtual environment and activate it:
+\begin{lstlisting}[language=terminal]
+    python3.9 -m venv ~/cairo_venv
+    source ~/cairo_venv/bin/activate
+    #next lines in the terminal should start with (cairo_venv)
+\end{lstlisting}
+
+From now on all commands will be run inside the virtual environment, where the default version of Python is 3.9.
+
+\subsection{Install Cairo and Starknet}
+First, we have to install these dependencies:
+\begin{lstlisting}[language=terminal]
+    sudo apt install -y libgmp3-dev #for multiple precision arithmetic
+    sudo apt install git #will be used later on
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh #Rust
+    pip install wheel #install if the installation of fastecdsa fails
+    pip install ecdsa #cryptographic algorithm
+    pip install fastecdsa #cryptographic algorithm
+    pip install sympy #symbolic math
+\end{lstlisting}
+
+Now we can install the Starknet CLI:
+\begin{lstlisting}[language=terminal]
+    pip install cairo-lang
+    starknet --version #should return 0.12.0
+\end{lstlisting}
+
+And the Cairo compiler\footnote{I found out that there is a bug preventing using mappings (\verb|LegacyMapping|) inside contracts. A workaround is to comment out line 71 at \verb|.cairo/crates/cairo-lang-sierra-gas/src/gas_info.rs|. The underlying problem has something to do with a check on the estimated gas consumed by the contract.}:
+\begin{lstlisting}[language=terminal]
+    git clone https://github.com/starkware-libs/cairo/ .cairo #we download the repo to ~/.cairo
+    cd .cairo #we move to the newly created folder
+    git checkout tags/v1.1.0 #we move to the release branch
+    cargo build --all --release #we build the compiler via Cargo
+    cd .. #we move back to the home folder
+\end{lstlisting}
+
+\subsection{Setting up environment variables}
+To set permanent environment variables we have to append content to \verb|~\.terminalrc| file:
+\begin{lstlisting}[language=terminal]
+    nano ~/.terminalrc #open ./terminalrc with a text editor
+\end{lstlisting}
+
+Now write to the end of the file these variables:
+\begin{lstlisting}[language=terminal]
+    export STARKNET_NETWORK=alpha-goerli #the Starknet network we will use (in this case the testnet)
+    export STARKNET_WALLET=starkware.starknet.wallets.open_zeppelin.OpenZeppelinAccount #the service to create the smart contract of your wallet
+    export CAIRO_COMPILER_DIR=~/.cairo/target/release/ #where Cairo compiler is placed
+    export CAIRO_COMPILER_ARGS=--add-pythonic-hints #Cairo compiler options
+\end{lstlisting}
+
+Now press \verb|Ctrl + X|, then \verb|y| and finally \verb|Enter|.
+
+Now close and re-open the terminal (don't forget to re-activate the virtual environment when you re-open the terminal).
+
+You can test if the environment variables we added exist with the command \verb|printenv|.
+
+\subsection{Creating an account}
+To create a Starknet account:
+\begin{lstlisting}[language=terminal]
+    starknet new_account --account myAccountName
+\end{lstlisting}
+
+This will generate the address and the public-private keys pair of the account, which will be printed in the terminal and also saved to \verb|~/.starknet_accounts/starknet_open_zeppelin_accounts.json|.
+
+Now we have to add some funds to the account, so that we can use them to deploy the account contract.
+
+To do so we can use any Starknet faucet, for example: \url{https://faucet.goerli.starknet.io/}.
+
+Then we can check on \url{https://starkscan.co/} that the transaction with the funds is at least in \emph{Pending} state.
+
+At this point, we can deploy the account:
+\begin{lstlisting}[language=terminal]
+    starknet deploy_account --account myAccountName
+\end{lstlisting}
+
+This will return the transaction hash: we must wait until the transaction is accepted on layer 2.
+
+\subsection{Deploying a smart contract}
+To deploy a smart contract, first, we must have some Cairo code. There are some examples online, such as \url{github.com/starknet-edu/deploy-cairo1-demo}.
+
+Let's say we have the code for the contract at \verb|~/src/myContract.cairo|.
+
+First, we have to compile the Cairo code into Sierra bytecode:
+\begin{lstlisting}[language=terminal]
+    .cairo/target/release/starknet-compile starknet-compile src/myContract.cairo src/myContract.json
+\end{lstlisting}
+
+Then, we have to declare the smart contract. This will create a Class in Starknet, which is a template containing our code:
+\begin{lstlisting}[language=terminal]
+    starknet declare --contract ../src/myCOntract.json --account myAccountName
+\end{lstlisting}
+
+Now we have to wait until the transaction declaring the contract is accepted on layer 2.
+
+Eventually, we have to deploy the contract. A smart contract will be created starting from the class.
+\begin{lstlisting}[language=terminal]
+    starknet deploy --class_hash HASH_OF_THE_PREVIOUSLY_CREATED_CLASS --account myAccountName
+\end{lstlisting}
+
+As soon as the deploying transaction is accepted on layer 2, we can interact with the account:
+\begin{lstlisting}[language=terminal]
+    starknet invoke --address SM_ADDRESS --function FUNCTION_NAME --inputs FUNCTION_ARGS --account myAccountName
+\end{lstlisting}
+
 
 \newpage
 \part{Appendix} \label{part:appendix}
