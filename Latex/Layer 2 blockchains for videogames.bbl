@@ -60,6 +60,11 @@ EthereumCommunity (2023).
 \newblock Optimistic rollups.
 \newblock \url{https://ethereum.org/en/developers/docs/scaling/optimistic-rollups/}.
 
+\bibitem[Falcone, 2023]{lootboxes_computer_ethics}
+Falcone, L. (2023).
+\newblock Loot boxes are gambling.
+\newblock \url{https://docs.google.com/presentation/d/11YnzHm33CbXt3qrp9v2pxWxf2oTpD9RE/edit?usp=sharing&ouid=116576255526134259427&rtpof=true&sd=true}.
+
 \bibitem[minimalsm, 2023]{ethereum_state_channels}
 minimalsm (2023).
 \newblock State channels.
@@ -90,10 +95,20 @@ Seth~Gilbert, N. A.~L. (2012).
 \newblock Perspective on the cap theorem.
 \newblock {\em Massachussets Institute of Technology}.
 
+\bibitem[Skinner, 1950]{intermittent_reinforcement}
+Skinner, B.~F. (1950).
+\newblock Intermittent reinforcement.
+\newblock {\em Amer. Psychol}.
+
 \bibitem[StarknetCommunity, 2022]{starknet_actors}
 StarknetCommunity (2022).
 \newblock Starknet's structure: Sequencers, provers, and nodes.
 \newblock \url{https://book.starknet.io/chapter_4/topology.html}.
+
+\bibitem[StarknetCommunity, 2023]{starknet_account_abstraction}
+StarknetCommunity (2023).
+\newblock Account abstraction.
+\newblock \url{https://book.starknet.io/chapter_5/index.html}.
 
 \bibitem[Zohar, 2015]{bitcoin_full_nodes}
 Zohar, A. (2015).
