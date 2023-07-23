@@ -25,6 +25,18 @@
     literate={-}{-}1
 }
 
+\lstdefinelanguage{cairo}{
+    backgroundcolor=\color{lightgray},
+    basicstyle=\scriptsize\ttfamily,
+    morecomment=[l]{//},
+    commentstyle=\color{darkgreen},
+    keywords={struct, fn, let, if, else, mod},
+    keywordstyle=\bf,
+    breaklines=true,
+    breakindent=40pt,
+    literate={-}{-}1
+}
+
 \title{Layer 2 blockchains for videogames}
 \author{Lapo Falcone \\ lapofalcone@gmail.com}
 
@@ -552,9 +564,9 @@ And the Cairo compiler\footnote{I found out that there is a bug preventing using
 \end{lstlisting}
 
 \subsection{Setting up environment variables}
-To set permanent environment variables we have to append content to \verb|~\.terminalrc| file:
+To set permanent environment variables we have to append content to \verb|~\.bashrc| file:
 \begin{lstlisting}[language=terminal]
-    nano ~/.terminalrc #open ./terminalrc with a text editor
+    nano ~/.bashrc #open .bashrc with a text editor
 \end{lstlisting}
 
 Now write to the end of the file these variables:
@@ -604,20 +616,137 @@ First, we have to compile the Cairo code into Sierra bytecode:
 
 Then, we have to declare the smart contract. This will create a Class in Starknet, which is a template containing our code:
 \begin{lstlisting}[language=terminal]
-    starknet declare --contract ../src/myCOntract.json --account myAccountName
+    starknet declare --contract ../src/myContract.json --account myAccountName
 \end{lstlisting}
 
 Now we have to wait until the transaction declaring the contract is accepted on layer 2.
 
 Eventually, we have to deploy the contract. A smart contract will be created starting from the class.
 \begin{lstlisting}[language=terminal]
-    starknet deploy --class_hash HASH_OF_THE_PREVIOUSLY_CREATED_CLASS --account myAccountName
+    starknet deploy --class_hash HASH_OF_THE_PREVIOUSLY_CREATED_CLASS --inputs CONSTRUCTOR_ARGS --account myAccountName
 \end{lstlisting}
 
 As soon as the deploying transaction is accepted on layer 2, we can interact with the account:
 \begin{lstlisting}[language=terminal]
     starknet invoke --address SM_ADDRESS --function FUNCTION_NAME --inputs FUNCTION_ARGS --account myAccountName
 \end{lstlisting}
+
+And we can also interact with the read-only functions of the contract via:
+\begin{lstlisting}[language=terminal]
+    starknet call --address SM_ADDRESS --function FUNCTION_NAME --inputs FUNCTION_ARGS --account myAccountName
+\end{lstlisting}
+
+\section{Cairo} \label{section:cairo}
+Cairo is the programming language in which we can write smart contracts in Starknet.
+
+Cairo is a language in continuous development. At the moment, on Starknet, it is possible to write contracts in Cairo 0.x (which is now deprecated) and Cairo 1.x. Soon it will be possible to write contracts in Cairo 2.x.
+
+The implementation part of this research has been compiled with the Cairo 1.1.1 compiler, therefore, in the next sections, we will see some concepts of Cairo 1.
+
+\subsection{General concepts} \label{subsection:general_concepts}
+Cairo is a Turing complete programming language, but in the next sections we will only cover basic concepts, useful to be able to understand the implemented smart contract. For a deeper guide it is possible to look at \cite{cairo_documentation}.
+
+In Cairo it is possible to use the standard control flow constructs, such as \verb|if| and \verb|for| statements:
+\begin{lstlisting}[language=cairo]
+    if x > y {
+        \\...
+    }
+\end{lstlisting}
+
+Cairo has a simple type-system. The basic types are: \verb|u8|, \verb|u16|, \verb|usize|, \verb|u64|, \verb|u128|, \verb|u256| which are basic integer types, and \verb|felt252| which can hold any type, but has peculiarities during the arithmetic division operation (is is not suggested to use it).
+
+In Cairo it is possible to use the \verb|let| keyword to declare a variable, and then use it.
+
+It is not possible to perform operations operations on mixed types, but it is possible to use the \verb|into()| function to perform casts.
+
+It is possible to perform casts only to bigger data types. In case of a cast to a smaller data type, and given that the variable to cast fits the smaller type, it is possible to use \verb|try_into()|, which returns an \verb|Option<T>| data type. \verb|unwrap()| is used to return \verb|T| in case the conversion succeeded.
+\begin{lstlisting}[language=cairo]
+    let x: u8 = 9_u8;
+    let y = 100_u128;
+    let z = x + 5_u8;
+    let a: u128 = x.into();
+    let b: u16 = x.try_into().unwrap();
+    let c: u8 = x.try_into().unwrap(); //error, 100 doesn't fit in a 8-bit integer
+\end{lstlisting}
+
+It is possible to import functions and data types via \verb|use|.
+
+Some important imports are:
+\begin{lstlisting}[language=cairo]
+    use starknet::get_execution_info; //to get info about the environment of the smart contract execution (e.g. calling user, block hash, ...)
+    use::starknet::ContractAddress; //type for addresses (a wrapper of felt252)
+    use traits::Into; //to use into()
+    use traits::TryInto; //to use try_into()
+    use option::OptionTrait; //to use unwrap()
+\end{lstlisting}
+
+Traits are comparable to interfaces in other programming languages.
+
+Functions have this syntax:
+\begin{lstlisting}[language=cairo]
+    fn foobar(par1: type, par2: type, ...) -> return_type {
+        \\...
+    }
+\end{lstlisting}
+
+\subsection{Storage} \label{subsection:storage}
+Starknet smart contracts can hold state. In order to create state variables in Cairo, we have to declare a structure:
+\begin{lstlisting}[language=cairo]
+    struct Storage {
+        foo: u8,
+        bar: u256,
+        mapping: LegacyMap<ContractAddress, u8>,
+    }
+\end{lstlisting}
+
+Here we declared an 8-bit integer (\verb|foo|), a 256-bit integer (\verb|bar|) and a dictionary (\verb|mapping|) holding \verb|ContractAddress| as key and \verb|u8| as value.
+
+Then, we can access storage variables via \verb|read| and \verb|write| calls, like this:
+\begin{lstlisting}[language=cairo]
+    let x = mapping::read(0x5e6f);
+    foo::write(foo::read + x);
+    mapping::write((0x1a2b, 149_u8));
+\end{lstlisting}
+
+It is important to note that it is possible to use a type inside the storage, only if it implements a trait with \verb|read| and \verb|write|.
+
+\subsection{Contract sections} \label{subsection:contract_labels}
+When writing a Starknet contract, it is important to understand how to structure a Cairo program so that it can be parsed by Starknet.
+
+The file must start with \verb|#[contract]|, followed by the declaration of the module where the contract functions will live.
+
+At the beginning of the module, usually, there are the imports used in the contract.
+
+Then there is the storage structure declaration.
+
+Eventually there are the functions, that can be decorated with the following labels:
+\begin{description}
+    \item[\#[constructor]] The next function will be the constructor of the smart contract. The constructor will be called when the smart contract is being deployed, and can initialize some variables.
+    \item[\#[external]] Marks functions that modify the storage of the contract. Such functions can be called via transactions.
+    \item[\#[view]] Marks functions that only read contract state parameters. Such functions, since they don't modify the state, can directly be queried, without a transaction.
+    \item[\#[event]] The next function is used to emit an event. An event is a mechanism that can be used to communicate information outside of the contract.
+\end{description}
+
+\part{Implementation: immutable loot-boxes} \label{part:iilb}
+In the next sections it will be presented a Starknet smart contract that aims to show one possible application of the blockchain to gaming.
+
+In section \ref{section:wbcbuiv} we listed 4 videogame-related properties that can be achieved by using a blockchain.
+
+In \cite{main_thesis} thesis they proposed 2 projects that aimed to show how it is possible to use smart contracts to run simple videogames on-chain.
+\begin{description}
+    \item[Flappy birds] This implementation aimed to show how to implement a continuous-time game on-chain, where the initial seed was randomized based on player identity to prevent the user to copy other users' solutions.
+    \item[Snake] This implementation aimed to show how to implement a discrete-time game, where only the first player to send a specific solution could redeem a reward. This approach was subject to the fact that available solutions decreased with time, and that it was a source of miner extractible value.
+\end{description}
+
+We propose instead an implementation to show how it is possible to use blockchain in videogames to enhance transparency and fairness.
+
+The idea originated from \cite{fair_lootboxes}, but in this solution they proposed an implementation based on Ethereum layer 1. We propose a simple implementation based on Starknet layer 2.
+
+This will allow us to have all the important fairness and transparency properties guaranteed by layer 1 immutability and publicity, and at the same time have a lower latency and fees.
+
+\section{Problem statement} \label{subsection:problem_statement}
+Loot boxes are a widely used reward mechanism used in videogames.
+
 
 
 \newpage

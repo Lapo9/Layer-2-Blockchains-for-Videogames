@@ -36,6 +36,12 @@
 \contentsline {subsection}{\numberline {8.4}Setting up environment variables}{18}{subsection.8.4}%
 \contentsline {subsection}{\numberline {8.5}Creating an account}{18}{subsection.8.5}%
 \contentsline {subsection}{\numberline {8.6}Deploying a smart contract}{19}{subsection.8.6}%
-\contentsline {part}{IV\hspace {1em}Appendix}{20}{part.4}%
-\contentsline {section}{\numberline {9}Merkle trees}{20}{section.9}%
-\contentsline {subsection}{\numberline {9.1}Merkle proof}{20}{subsection.9.1}%
+\contentsline {section}{\numberline {9}Cairo}{19}{section.9}%
+\contentsline {subsection}{\numberline {9.1}General concepts}{20}{subsection.9.1}%
+\contentsline {subsection}{\numberline {9.2}Storage}{20}{subsection.9.2}%
+\contentsline {subsection}{\numberline {9.3}Contract sections}{21}{subsection.9.3}%
+\contentsline {part}{IV\hspace {1em}Implementation: immutable loot-boxes}{21}{part.4}%
+\contentsline {section}{\numberline {10}Problem statement}{22}{section.10}%
+\contentsline {part}{V\hspace {1em}Appendix}{23}{part.5}%
+\contentsline {section}{\numberline {11}Merkle trees}{23}{section.11}%
+\contentsline {subsection}{\numberline {11.1}Merkle proof}{23}{subsection.11.1}%
