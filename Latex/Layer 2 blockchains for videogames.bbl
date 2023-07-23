@@ -10,6 +10,11 @@ alemanaa (2022).
 \newblock Bridges.
 \newblock \url{https://ethereum.org/en/developers/docs/bridges/}.
 
+\bibitem[Andrea Alberto~Marchesi, 2022]{main_thesis}
+Andrea Alberto~Marchesi, F.~B. (2022).
+\newblock {\em Rewarding gaming achievements in a decentralized way}.
+\newblock PhD thesis, Politecnico di Milano.
+
 \bibitem[Buterin, 2014]{ethereum_merkle_trees}
 Buterin, V. (2014).
 \newblock Ethereum: A next-generation smart contract and decentralized application platform.
@@ -19,6 +24,16 @@ Buterin, V. (2014).
 Buterin, V. (2019).
 \newblock Understanding plonk.
 \newblock \url{https://vitalik.ca/general/2019/09/22/plonk.html}.
+
+\bibitem[CairoCommunity, 2023]{cairo_documentation}
+CairoCommunity (2023).
+\newblock Cairo documentation.
+\newblock \url{https://book-cairo-lang.org}.
+
+\bibitem[Carvalho, 2021]{fair_lootboxes}
+Carvalho, A. (2021).
+\newblock Bringing transparency and trustworthiness to loot boxes with blockchain and smart contracts.
+\newblock {\em Miami University}.
 
 \bibitem[corwintines, 2023]{ethereum_scaling}
 corwintines (2023).

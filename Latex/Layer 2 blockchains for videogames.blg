@@ -3,44 +3,44 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: Layer 2 blockchains for videogames.aux
 The style file: apalike.bst
 Database file #1: biblio.bib
-You've used 17 entries,
+You've used 20 entries,
             1935 wiz_defined-function locations,
-            550 strings with 6052 characters,
-and the built_in function-call counts, 4492 in all, are:
-= -- 458
-> -- 119
-< -- 19
-+ -- 38
-- -- 34
-* -- 277
-:= -- 872
-add.period$ -- 51
-call.type$ -- 17
-change.case$ -- 102
-chr.to.int$ -- 17
-cite$ -- 17
-duplicate$ -- 198
-empty$ -- 300
-format.name$ -- 51
-if$ -- 847
+            562 strings with 6399 characters,
+and the built_in function-call counts, 5270 in all, are:
+= -- 537
+> -- 140
+< -- 22
++ -- 44
+- -- 40
+* -- 327
+:= -- 1026
+add.period$ -- 60
+call.type$ -- 20
+change.case$ -- 119
+chr.to.int$ -- 20
+cite$ -- 20
+duplicate$ -- 233
+empty$ -- 352
+format.name$ -- 60
+if$ -- 991
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 6
-newline$ -- 88
-num.names$ -- 51
-pop$ -- 64
+missing$ -- 7
+newline$ -- 103
+num.names$ -- 60
+pop$ -- 76
 preamble$ -- 1
-purify$ -- 102
+purify$ -- 120
 quote$ -- 0
-skip$ -- 174
+skip$ -- 204
 stack$ -- 0
-substring$ -- 225
-swap$ -- 14
+substring$ -- 261
+swap$ -- 16
 text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 102
+type$ -- 120
 warning$ -- 0
-while$ -- 37
+while$ -- 43
 width$ -- 0
-write$ -- 208
+write$ -- 245
