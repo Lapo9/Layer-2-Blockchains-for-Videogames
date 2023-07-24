@@ -1,24 +1,24 @@
 # Fdb version 4
-["bibtex Layer 2 blockchains for videogames"] 1690152900 "Layer 2 blockchains for videogames.aux" "Layer 2 blockchains for videogames.bbl" "Layer 2 blockchains for videogames" 1690152969 0
-  "./biblio.bib" 1690151169 5540 1eeaf3acc50d5bd78a176b5837e19d9c ""
-  "Layer 2 blockchains for videogames.aux" 1690152968 15468 eee6f8ba431ca5a4dc18198ac1e81b4e "pdflatex"
+["bibtex Layer 2 blockchains for videogames"] 1690213486 "Layer 2 blockchains for videogames.aux" "Layer 2 blockchains for videogames.bbl" "Layer 2 blockchains for videogames" 1690213598 0
+  "./biblio.bib" 1690201600 5266 a085fcc763eac5da2bf5770ae85e0104 ""
+  "Layer 2 blockchains for videogames.aux" 1690213597 15696 325ab3023f397d6c549bd45be55d783a "pdflatex"
   "p:/Program Files/texlive/2023/texmf-dist/bibtex/bst/base/apalike.bst" 1689590209 24635 604dafcc79f521a11ea73e506e1fbd98 ""
   (generated)
   "Layer 2 blockchains for videogames.bbl"
   "Layer 2 blockchains for videogames.blg"
   (rewritten before read)
-["pdflatex"] 1690152966 "c:/Users/lapof/Desktop/Blockchain report/Latex/Layer 2 blockchains for videogames.tex" "Layer 2 blockchains for videogames.pdf" "Layer 2 blockchains for videogames" 1690152969 0
+["pdflatex"] 1690213595 "c:/Users/lapof/Desktop/Blockchain report/Latex/Layer 2 blockchains for videogames.tex" "Layer 2 blockchains for videogames.pdf" "Layer 2 blockchains for videogames" 1690213598 0
   "../figures/client_user_interface.jpg" 1690113438 49945 7c4198263e31126dcb121de083734be0 ""
   "../figures/intermittent_rewards.png" 1690144221 65680 0602efb6afb69c237f49e9f665cfef41 ""
   "../figures/l2_transaction_journey.png" 1690140562 199181 4eebffd899b9ac7ae217e43f9d1f311d ""
   "../figures/merkle_proof.png" 1689876267 11517 bcb49441f8458482e12dbb329135391f ""
   "../figures/multi_round_fraud_proof.png" 1689791844 235715 82f05bedec159158f96d607dab4d5734 ""
-  "Layer 2 blockchains for videogames.aux" 1690152968 15468 eee6f8ba431ca5a4dc18198ac1e81b4e "pdflatex"
-  "Layer 2 blockchains for videogames.bbl" 1690152900 4593 512f3aa2a65674fec259a58cae5084a0 "bibtex Layer 2 blockchains for videogames"
-  "Layer 2 blockchains for videogames.out" 1690152968 8181 08df95c2faa1c13a8d4a16ee3767b515 "pdflatex"
-  "Layer 2 blockchains for videogames.tex" 1690152965 77060 95d5a90371887cce0955ebe608730e88 ""
-  "Layer 2 blockchains for videogames.toc" 1690152968 4414 37f7375f1b4747cd06abde9cdafb7ec3 "pdflatex"
-  "c:/Users/lapof/Desktop/Blockchain report/Latex/Layer 2 blockchains for videogames.tex" 1690152965 77060 95d5a90371887cce0955ebe608730e88 ""
+  "Layer 2 blockchains for videogames.aux" 1690213597 15696 325ab3023f397d6c549bd45be55d783a "pdflatex"
+  "Layer 2 blockchains for videogames.bbl" 1690213487 4307 5c21371e778948afa21ddc082ec652a0 "bibtex Layer 2 blockchains for videogames"
+  "Layer 2 blockchains for videogames.out" 1690213597 8181 08df95c2faa1c13a8d4a16ee3767b515 "pdflatex"
+  "Layer 2 blockchains for videogames.tex" 1690213595 78018 6bfe54959a6fed1468b0e9557fc29c67 ""
+  "Layer 2 blockchains for videogames.toc" 1690213597 4414 55a04d152619bf4b32f46ad072ae6076 "pdflatex"
+  "c:/Users/lapof/Desktop/Blockchain report/Latex/Layer 2 blockchains for videogames.tex" 1690213595 78018 6bfe54959a6fed1468b0e9557fc29c67 ""
   "p:/Program Files/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1689590650 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "p:/Program Files/texlive/2023/texmf-dist/fonts/map/fontname/texfonts.map" 1689592215 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "p:/Program Files/texlive/2023/texmf-dist/fonts/tfm/jknappen/ec/ectt1000.tfm" 1689591644 1536 06717a2b50de47d4087ac0e6cd759455 ""

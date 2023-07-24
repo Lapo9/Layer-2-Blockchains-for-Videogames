@@ -1,19 +1,19 @@
 \begin{thebibliography}{}
 
-\bibitem[Aleksander~Berentsen, 2022]{zk-stark}
-Aleksander~Berentsen, Jeremias~Lenzi, R.~N. (2022).
-\newblock A walk-through of a simple zk-stark proof.
-\newblock \url{https://deliverypdf.ssrn.com/delivery.php?ID=363114095103064030064081081023094100127044006079024031064087068000110114071024086085099050107020030120050064071117122076125110058042000066077116072005081004117079107014011081121123093096113086119115023120010018023106006006004081102124075086125100111097&EXT=pdf&INDEX=TRUE}.
-
 \bibitem[alemanaa, 2022]{ethereum_bridges}
 alemanaa (2022).
 \newblock Bridges.
 \newblock \url{https://ethereum.org/en/developers/docs/bridges/}.
 
-\bibitem[Andrea Alberto~Marchesi, 2022]{main_thesis}
-Andrea Alberto~Marchesi, F.~B. (2022).
-\newblock {\em Rewarding gaming achievements in a decentralized way}.
-\newblock PhD thesis, Politecnico di Milano.
+\bibitem[Atzei and Bartoletti, 2013]{bitcoin_transactions}
+Atzei, N. and Bartoletti, M. (2013).
+\newblock A formal model of bitcoin transactions.
+\newblock {\em Univeristà degli Studi di Trento/Cagliari}.
+
+\bibitem[Berentsen et~al., 2022]{zk-stark}
+Berentsen, A., Lenzi, J., and Nyffenegger, R. (2022).
+\newblock A walk-through of a simple zk-stark proof.
+\newblock {\em SSRN}.
 
 \bibitem[Buterin, 2014]{ethereum_merkle_trees}
 Buterin, V. (2014).
@@ -45,8 +45,8 @@ d1onys1us (2023).
 \newblock Zero-knowledge rollups.
 \newblock \url{https://ethereum.org/en/developers/docs/scaling/zk-rollups/}.
 
-\bibitem[David~Easley, 2018]{bitcoin_fees}
-David~Easley, Maureen~O'Hara, S.~B. (2018).
+\bibitem[Easley et~al., 2018]{bitcoin_fees}
+Easley, D., O'Hara, M., and Basu, S. (2018).
 \newblock From mining to markets: The evolution of bitcoin transaction fees.
 \newblock {\em Cornell University}.
 
@@ -65,6 +65,16 @@ Falcone, L. (2023).
 \newblock Loot boxes are gambling.
 \newblock \url{https://docs.google.com/presentation/d/11YnzHm33CbXt3qrp9v2pxWxf2oTpD9RE/edit?usp=sharing&ouid=116576255526134259427&rtpof=true&sd=true}.
 
+\bibitem[Gilbert and Lynch, 2012]{CAP_theorem}
+Gilbert, S. and Lynch, N.~A. (2012).
+\newblock Perspective on the cap theorem.
+\newblock {\em Massachussets Institute of Technology}.
+
+\bibitem[Marchesi and Bruschi, 2022]{main_thesis}
+Marchesi, A.~A. and Bruschi, F. (2022).
+\newblock {\em Rewarding gaming achievements in a decentralized way}.
+\newblock PhD thesis, Politecnico di Milano.
+
 \bibitem[minimalsm, 2023]{ethereum_state_channels}
 minimalsm (2023).
 \newblock State channels.
@@ -80,20 +90,10 @@ Nakamoto, S. (2009).
 \newblock Bitcoin: A peer-to-peer electronic cash system.
 \newblock {\em bitcoin.org}.
 
-\bibitem[Nicola~Atzei, 2013]{bitcoin_transactions}
-Nicola~Atzei, M.~B. (2013).
-\newblock A formal model of bitcoin transactions.
-\newblock {\em Univeristà degli Studi di Trento/Cagliari}.
-
 \bibitem[Pomerantz, 2021]{ethereum_merkle_proof}
 Pomerantz, O. (2021).
 \newblock Merkle proofs for offline data integrity.
 \newblock \url{https://ethereum.org/en/developers/tutorials/merkle-proofs-for-offline-data-integrity/}.
-
-\bibitem[Seth~Gilbert, 2012]{CAP_theorem}
-Seth~Gilbert, N. A.~L. (2012).
-\newblock Perspective on the cap theorem.
-\newblock {\em Massachussets Institute of Technology}.
 
 \bibitem[Skinner, 1950]{intermittent_reinforcement}
 Skinner, B.~F. (1950).

@@ -3,12 +3,13 @@
 \usepackage{graphicx} %for pictures
 \usepackage{listings} %for code blocks
 \usepackage[breaklinks, colorlinks=true, linkcolor=darkblue, anchorcolor=darkblue, citecolor=darkblue, urlcolor=darkblue]{hyperref} %for hyperlink in ref and cite
-\usepackage{fullpage} %for smaller margins in the page
+\usepackage{fullpage} %for smaller margins on the page
 \usepackage{parskip} %for spacing between paragraphs
-\usepackage{soul} %for strikethrougs
+\usepackage{soul} %for strikethroughs
 \usepackage{nameref} %for references with names
 \usepackage{bigfoot} %for verbatim in footnotes
 
+\hfuzz = 25pt %disable warnings for overfull hbox if the badness is < 20pt
 \graphicspath{ {../figures/} }
 \interfootnotelinepenalty = 10000 %avoid footnotes from being split into 2 pages
 
@@ -23,7 +24,8 @@
     keywordstyle=[1]\color{codepurple},
     breaklines=true,
     breakindent=40pt,
-    literate={-}{-}1
+    literate={-}{-}{1},
+    literate={~} {\(\sim\)}{1}
 }
 
 \lstdefinelanguage{cairo}{
@@ -38,7 +40,8 @@
     morekeywords=[2]{external, view, event, contract, constructor}, 
     keywordstyle=[2]\bf,
     breaklines=true,
-    breakindent=40pt
+    breakindent=40pt,
+    literate={~} {\(\sim\)}{1}
 }
 
 \lstdefinestyle{python3}{
@@ -48,7 +51,8 @@
     morekeywords={True, False},
     keywordstyle=\color{codeblue},
     breaklines=true,
-    breakindent=40pt
+    breakindent=40pt,
+    literate={~} {\(\sim\)}{1}
 }
 
 \title{Layer 2 blockchains for videogames}
@@ -80,7 +84,7 @@ What if we cannot trust the service provider? What if we want a service that is 
 
 In all these cases, and more, blockchain technologies are more suitable.
 
-\emph{In the next sections we will briefly describe how a blockchain works, why it can be useful in videogames, and what are the main limitations that have prevented its use in the video gaming industry so far.}
+\emph{In the next sections we will briefly describe how a blockchain works, why it can be useful in videogames, and what are the main limitations that have prevented its use in the videogaming industry so far.}
 
 \section {What is a blockchain} \label{section:wiab}
 A blockchain, as the name suggests, is a chain of blocks. Each block contains transactions, which, in the simplest form, are exchanges of tokens between 2 users.
@@ -103,7 +107,7 @@ In order for such a distributed ledger to work in a useful way, there is the nee
 Each user of the blockchain is identified only by a pair of private and public keys \(<p_k, P_k>\).
 
 A transaction is a \textit{packet} of data like this\footnote{In Bitcoins things are more complex than this. A user can spend an old transaction if he has a script to \textit{redeem} it. To spend a transaction he must provide the script to \textit{redeem} it and a script to re-lock it. Moreover, a user can merge many old transactions into a single one and can split the output by locking portions of it with different scripts. \cite{bitcoin_transactions}}:
-\begin{table}[h]
+\begin{table}[ht]
     \centering
     \begin{tabular}{|c|c|c|c|}
         \hline
@@ -114,7 +118,7 @@ A transaction is a \textit{packet} of data like this\footnote{In Bitcoins things
 \end{table}
 
 For example, if the user with public key \verb|0x1234| and private key \verb|0x5678| wants to send 3 tokens to the user with public key \verb|0xabcd|, the transaction will look like this:
-\begin{table}[h]
+\begin{table}[ht]
     \centering
     \begin{tabular}{|c|c|c|c|}
         \hline
@@ -192,7 +196,7 @@ The core concepts of a programmable blockchain like Ethereum are similar to the 
     \[\mathcal{N} (state_{old}, transaction) = state_{new}\]
 \end{description}
 
-\begin{table}[h]
+\begin{table}[ht]
     \centering
     \begin{tabular}{|c|c|c|l|l|}
         \hline
@@ -248,7 +252,7 @@ In the previous sections, we have briefly seen how a blockchain works. Now we wi
     \item[Ownership of digital assets] A videogame could reward the player with NFTs. This would be different than rewarding a player with a game-specific item, because the player would own the NFT independently from the game, and would even be free to sell it for fiat money.
     \item[Cross compatibility] If players are rewarded with tokens, it would be easier for other games to integrate them. In this way, players could easily import and use items earned in one game in another one.
     \item[Transparency] One of the key characteristics of blockchains is transparency. All transactions are public, therefore it can potentially be easier to detect cheaters in a competitive environment. Blockchain would also make it impossible for software houses to censor players.
-    \item[Fairness] Smart contracts could be used to create a fair ground between the software house and the player base, for example by using smart contracts to implement loot boxes.  
+    \item[Fairness] Smart contracts could be used to create a fairground between the software house and the player base, for example by using smart contracts to implement loot boxes.  
 \end{description}
 
 \section{Why blockchain cannot be used in videogames} \label{section:wbcnbuiv}
@@ -291,7 +295,7 @@ The lifecycle of a channel is made up of 3 phases \cite{ethereum_state_channels}
 \begin{description}
     \item[Opening] To open a channel all the participants must add funds to a smart contract and agree to the initial state by signing it.
     \item[Usage] Once a state channel is open, participants can start exchanging transactions off-chain. A transaction looks like this:
-        \begin{table}[h]
+        \begin{table}[ht]
             \centering
             \begin{tabular}{|c|c|c|c|}
                 \hline
@@ -370,12 +374,12 @@ At this point, the user must wait until the transaction made by the bridge to th
 \subsubsection{Exiting an optimistic rollup} \label{subsubsection:exiting_optimistic_rollup}
 To exit a rollup a user must send an exit transaction to the layer 2 sequencer. The sequencer will execute the transaction by burning all the assets of the user (that should be included in the exit transaction), and then include this transaction in a batch.
 
-At this point, the user must to generate a cryptographic proof (generally a Merkle proof) to show that the exit transaction was inside the last batch, and that the layer 2 account that submitted such transaction belongs to the user.
+At this point, the user must generate a cryptographic proof (generally a Merkle proof) to show that the exit transaction was inside the last batch, and that the layer 2 account that submitted such transaction belongs to the user.
 
 Now it is possible to send the proof to the layer 1 smart contract, along with an address where to send the withdrawn assets.
 
 \subsubsection{L2 - L1 interaction} \label{subsubsection:l2l1i}
-The sequencers store the state of the rollup as a Merkle tree (see section \nameref{section:merkle_trees}). The root of such tree is also stored in the layer 1 smart contract. \cite{optimistic_rollups}.
+The sequencers store the state of the rollup as a Merkle tree (see section \nameref{section:merkle_trees}). The root of such a tree is also stored in the layer 1 smart contract. \cite{optimistic_rollups}.
 
 When a sequencer wants to send a batch to the layer 1 smart contract, it must send a transaction containing:
 \begin{itemize}
@@ -389,46 +393,49 @@ The layer 1 smart contract receives the transaction and compares the Merkle root
 
 The highly compressed list of all the transactions and their inputs won't be part of the layer 1 state, but it will simply be stored as calldata, for cost reasons.
 
-The Merkle root of the transactions in the batch is necessary in order to let other participants prove that their transaction is part of the batch in an efficient way(for example when a user wants to withdraw assets from the rollup).
+The Merkle root of the transactions in the batch is necessary in order to let other participants prove that their transaction is part of the batch in an efficient way (for example when a user wants to withdraw assets from the rollup).
 
 At this point, the challenging period begins, and other users can send fraud proofs. 2 main proving schemes can be adopted:
 \begin{description}
     \item[Single round] In this scheme all the transactions' inputs being part of a batch must be stored (as calldata) in the layer 1 smart contract. Since the smart contract has all the transactions and their inputs, it can replay them and verify whether the new state Merkle root matches with the one sent by the sequencer.
-    \item[Multi round] This proving mechanism is more complex but also more efficient. In this case, only the Merkle root of the summary of transactions is required be stored as calldata.
+    \item[Multi round] This proving mechanism is more complex but also more efficient. In this case, only the Merkle root of the summary of transactions is required to be stored as calldata.
                         
-                        The process to prove fraud consists of a dialogue between the sequencer (asserter) and the challenger, supervised by a layer 1 smart contract. At each step the asserter must split computation performed in a batch into 2 equal halves and state the output\footnote{With output here it is intended the hash of the full state of the computation till this point.} of each one of the 2 halves. The challenger can decide which half he wants to challenge.
+                        There are 2 ways in which the sequencer may lie: including the wrong transactions and computing a wrong final state.
+                        
+                        In the first case, it is simple to prove the sequencer is malicious, since it suffices to provide the right transactions, which are public on Starknet.
+
+                        In the second case, instead, the process to prove fraud consists of a dialogue between the sequencer (asserter) and the challenger, supervised by a layer 1 smart contract. 
+                        At each step the asserter must split the computation performed in a batch into 2 equal halves and state the output\footnote{With output here it is intended the hash of the full state of the computation till this point.} of each one of the 2 halves. 
+                        The challenger can decide which half he wants to challenge.
                         This process goes on until only a single instruction remains in the asserter computation. At this point, both the asserter and the challenger must send their prediction for the outcome of that instruction, which is executed by the layer 1 smart contract, which can easily find out who is lying. This process can be visualized in Figure \ref{figure:multi_round_fraud_proof}.
+                        \end{description}
 
-                        Since we have the Merkle root of the batch and all the transactions in the layer 2 blockchain are available to other users, the challenger can prove whether a specific part of the computation shouldn't be there by hashing all the transactions that were actually included in the block. 
-                        And in case the sequencer and the challenger agree on the computation, the proof we described above is enough to understand who is lying about the new state.
-\end{description}
-
-\begin{figure}[h]
+\begin{figure}[ht]
     \centering
     \includegraphics[width=\textwidth]{multi_round_fraud_proof}
     \caption{The multi round fraud proof mechanism visualized.}
     \label{figure:multi_round_fraud_proof}
 \end{figure}
 
-It is interesting to note that even a single honest participant to an optimistic rollup has the power to stop malicious activities by any number of other nodes.
+It is interesting to note that even a single honest participant to an optimistic rollup has the power to stop malicious activities by any number of other nodes, thanks to the security guarantees provided by the layer 1 smart contract.
 
 \subsubsection{Optimistic rollups and videogames} \label{subsubsection:orav}
 Optimistic rollups are a step in the right direction towards the use of the blockchain in videogames.
 
-Indeed they do not suffer from the transparency and fairness problems we discussed in section \nameref{subsection:scav}, and, at the same time, they maintain more security and decentralization guarantees than sidechains, since they maintain a strict bound with the layer 1 blockchain.
+Indeed they do not suffer from the transparency and fairness problems we discussed in section \nameref{subsection:scav}, and, at the same time, they maintain more security and decentralization guarantees than sidechains, since they maintain a strict bond with the layer 1 blockchain.
 
 The main problem of the majority of the implementations of optimistic rollups are:
 \begin{description}
-    \item[High fees] Even if fees are lower than using a layer 1 blockchains, the need to send all the transactions and their inputs in a batch (although compressed) as calldata, isn't enough to lower the fees enough for adoption in the video gaming world.
-    \item[Withdrawal time] As we have seen in section \nameref{subsubsection:exiting_optimistic_rollup}, it takes a very long time (usually 7 days) to be able to withdraw the assets from an optimistic rollup. This doesn't pair well with the cross compatibility property, since different games will most likely run on different optimistic rollups implementations.
+    \item[High fees] Even if fees are lower than using a layer 1 blockchain, the need to send all the transactions and their inputs in a batch (although compressed) as calldata, isn't enough to lower the fees enough for adoption in the videogaming world.
+    \item[Withdrawal time] As we have seen in section \nameref{subsubsection:exiting_optimistic_rollup}, it takes a very long time (usually 7 days) to be able to withdraw the assets from an optimistic rollup. This doesn't pair well with the cross-compatibility property, since different games will most likely run on different optimistic rollups implementations.
 \end{description}
 
 \subsection{Zero-knowledge rollups} \label{subsection:zk_rollups}
-Zero-knowledge rollups are a layer 2 scaling solution that operates similarly to optimistic rollups. Therefore, as in optimistic rollups, the layer 2 sequencers receive various transactions, execute them and only update the layer 1 smart contract when a batch of transaction has been executed.
+Zero-knowledge rollups are a layer 2 scaling solution that operates similarly to optimistic rollups. Therefore, as in optimistic rollups, the layer 2 sequencers receive various transactions, execute them and only update the layer 1 smart contract when a batch of transactions has been executed.
 
 As in optimistic rollups, this mechanism improves scalability and performance of the blockchain, and splits the layer 1 fees among all the transactions in a batch.
 
-The core difference between optimistic rollups and ZK rollups is in the way the transaction batch update gets validated in the main blockchain.
+The core difference between optimistic rollups and ZK rollups is in the way the transactions batch update gets validated in the main blockchain.
 
 Sequencers of ZK rollups must send a zero-knowledge proof along with the changes to the old state. The zero-knowledge proof is a cryptographic demonstration that the proposed changes to the state are actually the result of executing all the transactions in the batch.
 
@@ -449,7 +456,7 @@ As soon as this transaction is added to a batch by the sequencer, the user must 
 Then he can send a withdrawal request to the layer 1 smart contract with the following information:
 \begin{itemize}
     \item The Merkle proof.
-    \item The exit transaction input data.
+    \item The exit transaction.
     \item The Merkle root of the transaction batch containing the exit transaction.
     \item A layer 1 address where to deposit the withdrawn assets.
 \end{itemize}
@@ -461,8 +468,7 @@ This process has a way lower latency than the one used for optimistic rollups, b
 \subsubsection{L2 - L1 interaction} \label{subsubsection:zk_l2l1i}
 Similarly to optimistic rollups, the sequencers must compute the Merkle tree of the state of the rollup, and send its root along with:
 \begin{itemize}
-    \item The Merkle root old state.
-    \item The Merkle root old state.
+    \item The Merkle root of the old state.
     \item The validity proof. 
     \item The Merkle root of the transactions in the batch. 
 \end{itemize} 
@@ -476,9 +482,9 @@ Validity proofs are complex cryptographic objects that allow to demonstrate the 
 
 In the case of ZK rollups, the statement to prove is that, given the computation deriving from the list of transactions in the batch and the old state, we get to the proposed new state.
 
-For costs reasons, it is not possible to run the full computation of the batch (it would defeat the purpose of ZK rollups), therefore we want to translate this problem into an easier-to-compute mathematical problem, where the transactions become values to plug in a set of equations, so that these mathematical equations are satisfied.
+For costs reasons, it is not possible to run the full computation of the batch on layer 1 (it would defeat the purpose of ZK rollups), therefore we want to translate this problem into an easier-to-compute mathematical problem, where the transactions become values to plug in a set of equations, so that these mathematical equations are satisfied.
 
-One way to do so is to use the PLONK scheme \cite{plonk},\\or ZK-STARK \cite{zk-stark}.
+One way to do so is to use the PLONK scheme \cite{plonk}, or ZK-STARK \cite{zk-stark}.
 
 \subsubsection{ZK rollups and videogames} \label{subsubsection:zkrav}
 ZK rollups share a lot of features with optimistic rollups:
@@ -501,8 +507,10 @@ For these reasons, ZK rollups are, in the majority of cases, the most suited lay
 \part{Starknet} \label{part:starknet}
 Starknet is one of the most successful implementations of ZK rollups. It uses Ethereum as layer 1.
 
+\emph{In the next sections the core concepts of Starknet will be explained. Then it will be explained each step to set up Starknet on a Linux machine. Last, an overview of Cairo, the programming language to write smart contracts, will be presented.}
+
 \section{Account abstraction} \label{section:account_abstraction}
-As we have partially seen in section \ref{subsection:programmability}, Ethereum has 2 different kinds of accounts:
+As we have partially seen in section \nameref{subsection:programmability}, Ethereum has 2 different kinds of accounts:
 \begin{description}
     \item[EOA] Externally owned accounts are controlled by users via their private key. These accounts can initiate transactions by signing them with the private key.
     \item[Contract accounts] Contract accounts are instead controlled by code. The private key for these accounts is not generated (and it is practically impossible to compute), therefore they cannot sign transactions, but can only respond to transactions with the specified source code. 
@@ -510,24 +518,24 @@ As we have partially seen in section \ref{subsection:programmability}, Ethereum 
 
 This means that there isn't much flexibility left for the users: they must have the private key and use it to generate transactions.
 
-As the blockchain gets more and more diffused, the need for more flexibility has arisen. For example:
+As the blockchain gets more and more diffused, the need for more flexibility and user-friendliness has arisen. For example:
 \begin{description}
     \item[Access recovery] Nowadays if you lose the private key, you lose access to your account. It is not possible to recover it.
     \item[Multi approval transactions] In some cases it is important that a transaction is approved by more than one person. This is not \emph{natively} possible with only a single private key.
     \item[Transaction limits] It could be handy if it was possible to limit the amount of transactions in a given time interval, or the maximum amount transferable. 
 \end{description}
 
-Nowadays all of these features are achieved via the use of smart contracts. 
+At the moment, in Ethereum, all of these features are achieved via the use of smart contracts. 
 
-For example, in order to being able to have multi approval transactions, it is possible to set up a smart contract with a method to move currency only if it is invoked by a certain number of predefined addresses.
+For example, in order to be able to have multi-approval transactions, it is possible to set up a smart contract with a method to move currency only if it is invoked by a certain number of predefined addresses.
 
 However, this way of solving the described problems is cumbersome, as it requires deploying a smart contract and then using a different account to interact with it via transactions.
 
 It would be handy if we had only one kind of account, controlled by code but at the same time able to generate transactions.
 
-This is a simplification of Starknet account model: everything is a smart contract.
+This is a simplification of the Starknet account model: everything is a smart contract.
 
-In other words, your account balance is now controlled by code, and not by your private key. Your private key is only used to initiate transactions to call other smart contract functions, or to deploy a new smart contract. But it cannot be used to directly modifying Starknet state (for example by sending an amount of ETH to another account).
+In other words, your account balance is now controlled by code, and not by your private key. Your private key is only used to initiate transactions to call other smart contract functions, or to deploy a new smart contract. But it cannot be used to directly modify Starknet state (for example by sending an amount of ETH to another account).
 
 The account balance holds STARK tokens (the native currency), ETH and other Ethereum common tokens, such as ERC-20.
 
@@ -538,19 +546,19 @@ In Starknet, if a smart contract has the following interface \cite{starknet_acco
     \item[constructor] Used to initialize the account contract.
     \item[validate\_deploy] Used when deploying this account.
     \item[validate\_declare] Used when declaring a new contract.
-    \item[validate] A method to check the validity of a requested transaction. For example it can be used to compare the private key of the sender of the transaction with a public key stored in contract storage. The key point is that this method can check any criterion. In this way it is possible to have multisig accounts, or ways to change the \emph{password} to make transactions with this account. 
+    \item[validate] A method to check the validity of a requested transaction. For example, it can be used to compare the signature on the sender's transaction with a public key stored in contract storage. The key point is that this method can check any criterion. In this way it is possible to have multisig accounts, or ways to change the \emph{password} to make transactions with this account. 
     \item[execute] Actually executes the requested transaction, after having checked with \verb|validate|.  
 \end{description}
 
-When a new user wants to create a new account on Starknet, it will use counterfactual deployment. The user will generate the canonical key pair, then will fund his account, and, eventually, will perform a transaction to deploy a smart contract (in particular an account contract) on the address\footnote{With address we refer to an hexadecimal number generated starting from the private key. For example the hash of the private key.} relative to his public key. The funding must be done prior to the deployment of the account contract, to be able to pay the fee of the deployment transaction.
+When a new user wants to create a new account on Starknet, it will use counterfactual deployment. The user will generate the canonical key pair, then will fund his account, and, eventually, will perform a transaction to deploy a smart contract (in particular an account contract) on the address\footnote{With address we refer to an hexadecimal number generated starting from the private key. For example the hash of the private key.} relative to his public key. The funding must be done prior to the deployment of the account contract to be able to pay the fee of the deployment transaction.
 
 \section{Starknet actors} \label{section:starknet_actors}
-Starknet organizes its participants in various roles \cite{starknet_actors}. Each role carries out one of the tasks needed to make ZK rollups work.
+Starknet organizes its participants into various roles \cite{starknet_actors}. Each role carries out one of the tasks needed to make ZK rollups work.
 
 At the moment some of the roles present in Starknet are centralized for development reasons, but the core concepts of each role do not make any centralization assumption, and in the future will be decentralized.
 
 \subsection{Sequencers} \label{subsection:sequencers}
-Sequencers can be compared miners, since their tasks are:
+Sequencers can be compared to miners. Their tasks are:
 \begin{description}
     \item[Aggregation] They have to collect and store in a pool transactions from users.
     \item[Batching] They have to group transactions together into batches, and decide when to close a batch. This decision can be taken based on the number of transactions received, or on the time elapsed since the last batch.
@@ -562,7 +570,7 @@ At this point, sequencers have to pass the block they've created to provers.
 \subsection{Provers} \label{subsection:provers}
 Provers must supervise the work of sequencers and communicate with the layer 1 smart contract:
 \begin{description}
-    \item[Execution check] Provers execute some sampled transactions they received in a block a second time, to check sequencers work.
+    \item[Execution check] Provers execute a second time some sampled transactions they received in a block, to check sequencers work.
     \item[Proof generation] Provers have the task to generate the zero-knowledge proof to demonstrate a correct handling of the execution of the transactions.
     \item[Communicating with layer 1] Finally they have to send the batch of transactions and the proof to the layer 1 smart contract.
 \end{description}
@@ -579,7 +587,7 @@ Nodes are the auditors of Starknet. Their tasks are:
 \section{Transaction journey} \label{section:transaction_journey}
 In this section it will be summarized the various steps a transaction must go through to be accepted on the layer 1 blockchain:
 
-\begin{figure}[h]
+\begin{figure}[ht]
     \centering
     \includegraphics[width=\textwidth]{l2_transaction_journey} 
     \caption{The journey of a transaction.}
@@ -591,7 +599,7 @@ In this section it will be summarized the various steps a transaction must go th
     \item[Reception] The node will receive the transaction, apply some preliminary checks (mostly syntactic) and then forward it to a sequencer.
     \item[Acceptance on layer 2] As soon as the sequencer receives the transaction, it validates and executes it. When a transaction is executed, Starknet state changes immediately and the transaction is considered accepted on layer 2. However the block isn't emitted immediately: the sequencer will batch together multiple transactions before emitting a block.
     \item[Proof generation] The block is received by a prover, which verifies again each transaction and generates the zero-knowledge validity proof and sends it to the Ethereum smart contract.
-    \item[Acceptance on layer 1] The Ethereum smart contract will verify the zero-knowledge proof. At this point the transaction is considered accepted on layer 1.
+    \item[Acceptance on layer 1] The Ethereum smart contract verifies the zero-knowledge proof. At this point, the transaction is considered accepted on layer 1.
 \end{description}
 
 \section{Starknet setup} \label{section:starknet_setup}
@@ -649,7 +657,7 @@ And the Cairo compiler\footnote{I found out that there is a bug preventing using
 \begin{lstlisting}[language=terminal]
     git clone https://github.com/starkware-libs/cairo/ .cairo #we download the repo to ~/.cairo
     cd .cairo #we move to the newly created folder
-    git checkout tags/v1.1.0 #we move to the release branch
+    git checkout tags/v1.1.1 #we move to the release branch, v1.1.1 is the last supported version on Starknet
     cargo build --all --release #we build the compiler via Cargo
     cd .. #we move back to the home folder
 \end{lstlisting}
@@ -660,10 +668,10 @@ To set permanent environment variables we have to append content to \verb|~\.bas
     nano ~/.bashrc #open .bashrc with a text editor
 \end{lstlisting}
 
-Now write to the end of the file these variables:
+Now write these variables at the end of the file:
 \begin{lstlisting}[language=terminal]
     export STARKNET_NETWORK=alpha-goerli #the Starknet network we will use (in this case the testnet)
-    export STARKNET_WALLET=starkware.starknet.wallets.open_zeppelin.OpenZeppelinAccount #the service to create the smart contract of your wallet
+    export STARKNET_WALLET=starkware.starknet.wallets.open_zeppelin.OpenZeppelinAccount #the service to create account contract
     export CAIRO_COMPILER_DIR=~/.cairo/target/release/ #where Cairo compiler is placed
     export CAIRO_COMPILER_ARGS=--add-pythonic-hints #Cairo compiler options
 \end{lstlisting}
@@ -680,7 +688,7 @@ To create a Starknet account:
     starknet new_account --account myAccountName
 \end{lstlisting}
 
-This will generate the address and the public-private keys pair of the account, which will be printed in the terminal and also saved to\\\verb|~/.starknet_accounts/starknet_open_zeppelin_accounts.json|.
+This will generate the address and the public-private key pair of the account, which will be printed in the terminal and also saved to\\\verb|~/.starknet_accounts/starknet_open_zeppelin_accounts.json|.
 
 Now we have to add some funds to the account, so that we can use them to deploy the account contract.
 
@@ -696,30 +704,30 @@ At this point, we can deploy the account:
 This will return the transaction hash: we must wait until the transaction is accepted on layer 2.
 
 \subsection{Deploying and interacting with a smart contract} \label{subsubsection:daiwasc}
-To deploy a smart contract, first, we must have some Cairo code. There are some examples online, such as \url{github.com/starknet-edu/deploy-cairo1-demo}.
+To deploy a smart contract, first, we must have some Cairo code. There are some examples online, such as \url{https://github.com/starknet-edu/deploy-cairo1-demo}.
 
 Let's say we have the code for the contract at \verb|~/src/myContract.cairo|.
 
 First, we have to compile the Cairo code into Sierra bytecode:
 \begin{lstlisting}[language=terminal]
-    .cairo/target/release/starknet-compile starknet-compile src/myContract.cairo src/myContract.json
+    ~/.cairo/target/release/starknet-compile ~/src/myContract.cairo ~/src/myContract.json
 \end{lstlisting}
 
-Then, we have to declare the smart contract. This will create a Class in Starknet, which is a template containing our code:
+Then, we have to declare the smart contract. This will create a \emph{Class} object in Starknet, which is a template containing our code:
 \begin{lstlisting}[language=terminal]
-    starknet declare --contract ../src/myContract.json --account myAccountName
+    starknet declare --contract ~/src/myContract.json --account myAccountName
 \end{lstlisting}
 
 Now we have to wait until the transaction declaring the contract is accepted on layer 2.
 
-Eventually, we have to deploy the contract. A smart contract will be created starting from the class.
+Eventually, we have to deploy the contract. A smart contract will be created starting from the \emph{Class}.
 \begin{lstlisting}[language=terminal]
     starknet deploy --class_hash HASH_OF_THE_PREVIOUSLY_CREATED_CLASS --inputs CONSTRUCTOR_ARGS --account myAccountName
 \end{lstlisting}
 
 As soon as the deploying transaction is accepted on layer 2, we can interact with the account:
 \begin{lstlisting}[language=terminal]
-    starknet invoke --address SM_ADDRESS --function FUNCTION_NAME --inputs FUNCTION_ARGS --account myAccountName
+    starknet invoke --address SC_ADDRESS --function FUNCTION_NAME --inputs FUNCTION_ARGS --account myAccountName
 \end{lstlisting}
 
 And we can also interact with the read-only functions of the contract via:
@@ -730,7 +738,7 @@ And we can also interact with the read-only functions of the contract via:
 \section{Cairo} \label{section:cairo}
 Cairo is the programming language in which we can write smart contracts in Starknet.
 
-Cairo is a language in continuous development. At the moment, on Starknet, it is possible to write contracts in Cairo 0.x (which is now deprecated) and Cairo 1.x. Soon it will be possible to write contracts in Cairo 2.x.
+Cairo is a language in continuous development\footnote{For this reason it is very difficult to find updated information online. Even the official Starknet website uses Cairo 1 in some sections, and Cairo 2 (which isn't supported yet), in other sections.}. At the moment, on Starknet, it is possible to write contracts in Cairo 0.x (which is now deprecated) and Cairo 1.x. Soon it will be possible to write contracts in Cairo 2.x.
 
 The implementation part of this research has been compiled with the Cairo 1.1.1 compiler, therefore, in the next sections, we will see some concepts of Cairo 1.
 
@@ -742,27 +750,27 @@ In Cairo it is possible to use the standard control flow constructs, such as \ve
     if x > y {
         \\...
     }
-\end{lstlisting}
+\end{lstlisting} 
 
-Cairo has a simple type-system. The basic types are: \verb|u8|, \verb|u16|, \verb|usize|, \verb|u64|, \verb|u128|, \verb|u256| which are basic integer types, and \verb|felt252| which can hold any type, but has peculiarities during the arithmetic division operation (is is not suggested to use it).
+Cairo has a simple native type system. The basic types are: \verb|u8|, \verb|u16|, \verb|usize|, \verb|u64|, \verb|u128|, \verb|u256| which are basic integer types, and \verb|felt252| which can hold any type, but has peculiarities during the arithmetic division operation (is is not suggested to use it).
 
 In Cairo it is possible to use the \verb|let| keyword to declare a variable, and then use it.
 
-It is not possible to perform operations operations on mixed types, but it is possible to use the \verb|into()| function to perform casts.
+It is not possible to perform arithmetic operations on mixed types, but it is possible to use the \verb|into()| function to perform casts.
 
 It is possible to perform casts only to bigger data types. In case of a cast to a smaller data type, and given that the variable to cast fits the smaller type, it is possible to use \verb|try_into()|, which returns an \verb|Option<T>| data type. \verb|unwrap()| is used to return \verb|T| in case the conversion succeeded.
 \begin{lstlisting}[language=cairo]
     let x: u8 = 9_u8;
-    let y = 100_u128;
+    let y = 1000_u128;
     let z = x + 5_u8;
     let a: u128 = x.into();
     let b: u16 = x.try_into().unwrap();
-    let c: u8 = x.try_into().unwrap(); //error, 100 doesn't fit in a 8-bit integer
+    let c: u8 = x.try_into().unwrap(); //error, 1000 doesn't fit in a 8-bit integer
 \end{lstlisting}
 
 It is possible to import functions and data types via \verb|use|.
 
-Some important imports are:
+Some useful imports are:
 \begin{lstlisting}[language=cairo]
     use starknet::get_execution_info; //to get info about the environment of the smart contract execution (e.g. calling user, block hash, ...)
     use::starknet::ContractAddress; //type for addresses (a wrapper of felt252)
@@ -799,7 +807,7 @@ Then, we can access storage variables via \verb|read| and \verb|write| calls, li
     mapping::write((0x1a2b, 149_u8));
 \end{lstlisting}
 
-It is important to note that it is possible to use a type inside the storage, only if it implements a trait with \verb|read| and \verb|write|.
+It is important to note that it is possible to use a certain type inside the storage, only if it implements a trait with \verb|read| and \verb|write|.
 
 \subsection{Contract sections} \label{subsection:contract_labels}
 When writing a Starknet contract, it is important to understand how to structure a Cairo program so that it can be parsed by Starknet.
@@ -812,19 +820,19 @@ Then there is the storage structure declaration.
 
 Eventually there are the functions, that can be decorated with the following labels:
 \begin{description}
-    \item[\#[constructor]] The next function will be the constructor of the smart contract. The constructor will be called when the smart contract is being deployed, and can initialize some variables.
+    \item[\#[constructor]] The next function will be the constructor of the smart contract. The constructor will be called when the smart contract is being deployed, and can initialize state variables.
     \item[\#[external]] Marks functions that modify the storage of the contract. Such functions can be called via transactions.
     \item[\#[view]] Marks functions that only read contract state parameters. Such functions, since they don't modify the state, can directly be queried, without a transaction.
-    \item[\#[event]] The next function is used to emit an event. An event is a mechanism that can be used to communicate information outside of the contract.
+    \item[\#[event]] Marks functions used to emit an event. An event is a mechanism that can be used to communicate information outside of the contract.
 \end{description}
 
 \newpage
 \part{Implementation: immutable loot boxes} \label{part:iilb}
 In the next sections it will be presented a Starknet smart contract that aims to show one possible application of the blockchain to gaming.
 
-In section \ref{section:wbcbuiv} we listed 4 videogame-related properties that can be achieved by using a blockchain.
+In section \nameref{section:wbcbuiv} we listed 4 videogame-related properties that can be achieved by using a blockchain.
 
-In \cite{main_thesis} thesis they proposed 2 projects that aimed to show how it is possible to use smart contracts to run simple videogames on-chain.
+In \cite{main_thesis} thesis they proposed 2 projects that aimed to show how it is possible to use smart contracts to run simple videogames on Starknet:
 \begin{description}
     \item[Flappy birds] This implementation aimed to show how to implement a continuous-time game on-chain, where the initial seed was randomized based on player identity to prevent the user to copy other users' solutions.
     \item[Snake] This implementation aimed to show how to implement a discrete-time game, where only the first player to send a specific solution could redeem a reward. This approach was subject to the fact that available solutions decreased with time, and that it was a source of miner extractible value.
@@ -834,22 +842,22 @@ We propose instead an implementation to show how it is possible to use blockchai
 
 The idea originated from \cite{fair_lootboxes}, but in this solution they proposed an implementation based on Ethereum layer 1. We propose a simple implementation based on Starknet layer 2.
 
-This will allow us to have all the important fairness and transparency properties guaranteed by layer 1 immutability and publicity, and at the same time have a lower latency and fees.
+This will allow us to have all the important fairness and transparency properties guaranteed by layer 1 immutability and publicity, and at the same time have lower latency and fees.
 
-The full project can be found on GitHub:\\\url{https://github.com/Lapo9/Layer-2-Blockchains-for-Videogames}.
+The full project can be found on GitHub:\\\url{https://github.com/Lapo9/Layer-2-Blockchains-for-Videogames}
 
 \section{Problem statement} \label{section:problem_statement}
 Loot boxes are a widely used reward mechanism used in videogames, especially in recent years.
 
 When loot boxes are part of a videogame, the player is presented with the possibility of purchasing an item (the loot box) which can be opened and give as a reward one (or more) in-game objects that are part of a collection.
 
-At the moment of the purchase of the loot box, the player only knows what are the objects part of the collection, but not the random objects he will get. And of course some object will be more valuable than others.
+At the moment of the purchase of the loot box, the player only knows what are the objects part of the collection, but not the random objects he will get. And of course some objects will be more valuable than others.
 
-For this reason, in recent times loot boxes started being considered akin to gambling in some countries, for example in Belgium. This is due to the fact that loot boxes share many features of standard gambling, as I stated in this presentation: \cite{lootboxes_computer_ethics}.
+For this reason, in recent times, loot boxes started being considered akin to gambling in some countries, for example in Belgium. This is due to the fact that loot boxes share many features of standard gambling, as I discussed in this presentation: \cite{lootboxes_computer_ethics}.
 
 The main reason why they are often compared to gambling is the fact that they can be classified as intermittent rewards with variable ratio \cite{intermittent_reinforcement}, which is a technique to keep humans engaged in an activity. 
-In short, when opening loot boxes, you know you could get a desired prize, but you don't know when you will get it.
-\begin{figure}[h]
+In short, when opening loot boxes, you know you could get a desired prize, but you don't know if and when you will get it.
+\begin{figure}[ht]
     \centering
     \includegraphics[width=\textwidth]{intermittent_rewards} 
     \caption{Comparison of different reinforcement methods from \cite{lootboxes_computer_ethics}.}
@@ -860,103 +868,101 @@ In order to combat this dangerous phenomenon, in many jurisdictions, software ho
 
 The main issue of this measure is the fact that legal bodies lack the tools, both technical and juridical, to enforce the rules. Loot boxes execution happens on private servers, therefore it is difficult to analyze. At the moment the only practical way is to analyze the outcomes, rather than the code execution, but to get an accurate result many samples are required (and they wouldn't even hold well in a trial).
 
-Moreover software houses tend to keep the engagement high with other means, for example by letting famous internet content creators have more chance to draw valuable items.
+Moreover, software houses tend to keep the engagement high with other means, for example by letting famous internet content creators have more chances to draw valuable items.
 
 Both these problems would be resolved by moving loot boxes code execution to a public blockchain. Indeed, in this scenario, the player can read and understand the loot box source code, and be sure it will be executed without modifications.
 
-Moreover, after having opened the loot box, the player could look-up for the transaction via an external block chain explorer, and be sure that he got awarded in-game with the reward the loot box contract extracted.
+After having opened the loot box, the player could look up the transaction via an external blockchain explorer, and be sure that he got awarded in-game with the reward the loot box contract actually extracted.
 
 \section{The smart contract} \label{section:the_smart_contract}
-The smart contract is a very simple implementation of the ideas we presented in section \ref{section:problem_statement}.
+The smart contract is a very simple implementation of the ideas we presented in section \nameref{section:problem_statement}.
 
-\begin{lstlisting}[language=cairo, caption={Loot box smart contract code. Can also be found at \url{https://github.com/Lapo9/Layer-2-Blockchains-for-Videogames/blob/master/LootBoxSmartContract/LootBoxSmartContract.cairo}.}, captionpos=b]
+\begin{lstlisting}[language=cairo, caption={Loot box smart contract code. Can also be found at \url{https://github.com/Lapo9/Layer-2-Blockchains-for-Videogames/blob/master/LootBoxSmartContract/LootBoxSmartContract.cairo}}, captionpos=b]
     #[contract]
     mod LootBox {
-        use starknet::get_execution_info;
-        use starknet::ContractAddress;
-        use traits::Into;
-        use box::BoxTrait;
-        use option::OptionTrait;
+    use starknet::get_execution_info;
+    use starknet::ContractAddress;
+    use traits::Into;
+    use box::BoxTrait;
+    use option::OptionTrait;
 
-        //the storage simply contains mappings associating the user and the amount of each assets they have
-        struct Storage {
-            usersTokens: LegacyMap<ContractAddress, u256>,
-            usersGems: LegacyMap<ContractAddress, u256>,
-            usersGold: LegacyMap<ContractAddress, u256>
-        }
+    //the storage simply contains mappings associating the user and the amount of each assets they have
+    struct Storage {
+        usersTokens: LegacyMap<ContractAddress, u256>,
+        usersGems: LegacyMap<ContractAddress, u256>,
+        usersGold: LegacyMap<ContractAddress, u256>
+    }
 
-        #[constructor]
-        fn constructor(masterAddress: ContractAddress) {
-            usersTokens::write(masterAddress, 1000000); //make the owner rich
-        }
+    #[constructor]
+    fn constructor(masterAddress: ContractAddress) {
+        usersTokens::write(masterAddress, 1000000); //make the owner rich
+    }
 
-        #[event] //signals loot box opening (currency: 0 = gems, 1 = gold)
-        fn lootBoxResult(user: ContractAddress, currency: u8, amount: u256, remainingTokens: u256){}
+    #[event] //signals loot box opening (currency: 0 = gems, 1 = gold)
+    fn lootBoxResult(user: ContractAddress, currency: u8, amount: u256, remainingTokens: u256){}
 
-        #[event] //signals error
-        fn notEnoughTokens(user: ContractAddress, remainingTokens: u256){}
+    #[event] //signals error
+    fn notEnoughTokens(user: ContractAddress, remainingTokens: u256){}
 
-        #[event] //tokens sent
-        fn tokensSent(sender: ContractAddress, receiver: ContractAddress, remainingTokens: u256){}
-        
+    #[event] //tokens sent
+    fn tokensSent(sender: ContractAddress, receiver: ContractAddress, remainingTokens: u256){}
+    
 
-        #[external] //extracts a random item and adds it to the player assets
-        fn buyLootBox() {
-            let userAddress = get_execution_info().unbox().caller_address; //get user address
-            let availableTokens = usersTokens::read((userAddress)); //extract how many tokens the user has
+    #[external] //extracts a random item and adds it to the player assets
+    fn buyLootBox() {
+        let userAddress = get_execution_info().unbox().caller_address; //get user address
+        let availableTokens = usersTokens::read((userAddress)); //extract how many tokens the user has
 
-            //executes contract only if the user has enough tokens (assert is very buggy on this version of Starknet, it would be a better option)
-            if availableTokens > 0 {
-                //pay 1 token
-                usersTokens::write(userAddress, usersTokens::read((userAddress)) - 1);
+        //executes contract only if the user has enough tokens (assert is very buggy on this version of Starknet, it would be a better option)
+        if availableTokens > 0 {
+            //pay 1 token
+            usersTokens::write(userAddress, usersTokens::read((userAddress)) - 1);
 
-                //here we extract a pseudo random number, based on the hash of the incoming transaction
-                let transactionHash = get_execution_info().unbox().tx_info.unbox().transaction_hash; //get the hash of the transaction
-                let transactionHash256: u256 = transactionHash.into(); //cast the hash to a 256 integer
-                let random = transactionHash256 & 0xfff; //keep only the last 3 digits (range from 0 to 4096)
-                
-                //25% chance of getting gems (if the last hex digit (0-15) is less than 4
-                if (random & 0xf) < 4 {
-                    usersGems::write(userAddress, usersGems::read((userAddress)) + random); //add gems to account
-                    lootBoxResult(userAddress, 0, random, availableTokens-1);  //signal event
-                }
-                else {
-                    usersGold::write(userAddress, usersGold::read((userAddress)) + random); //add gold to account
-                    lootBoxResult(userAddress, 1, random, availableTokens-1); //signal event
-                }
-            }
-            else {
-                notEnoughTokens(userAddress, availableTokens); //signal error (user doesn't have enough tokens)
-            }
-        }
-
-        #[external] //sends the specified amount of tokens to the specified account
-        fn sendTokens(receiverAddress: ContractAddress, amount: u256) {
-            let userAddress = get_execution_info().unbox().caller_address; //get user address
-            let availableTokens = usersTokens::read((userAddress)); //extract how many tokens the user has
+            //here we extract a pseudo random number, based on the hash of the incoming transaction
+            let transactionHash = get_execution_info().unbox().tx_info.unbox().transaction_hash; //get the hash of the transaction
+            let transactionHash256: u256 = transactionHash.into(); //cast the hash to a 256 integer
+            let random = transactionHash256 & 0xfff; //keep only the last 3 digits (range from 0 to 4096)
             
-            if availableTokens < amount {
-                notEnoughTokens(userAddress, availableTokens); //signal error (user wants to send more tokens than what he has)
+            //25% chance of getting gems (if the last hex digit (0-15) is less than 4
+            if (random & 0xf) < 4 {
+                usersGems::write(userAddress, usersGems::read((userAddress)) + random); //add gems to account
+                lootBoxResult(userAddress, 0, random, availableTokens-1);  //signal event
             }
             else {
-                usersTokens::write(userAddress, availableTokens - amount); //remove tokens from user
-                usersTokens::write(receiverAddress, usersTokens::read((receiverAddress)) + amount); //add tokens to the receiver
-                tokensSent(userAddress, receiverAddress, availableTokens - amount); //signal transfer
+                usersGold::write(userAddress, usersGold::read((userAddress)) + random); //add gold to account
+                lootBoxResult(userAddress, 1, random, availableTokens-1); //signal event
             }
         }
-
-        #[view] //returns the assets of the specified player
-        fn getUserAssets(userAddress: ContractAddress) -> (u256, u256, u256) {
-            let tokens = usersTokens::read((userAddress));
-            let gems = usersGems::read((userAddress));
-            let gold = usersGold::read((userAddress));
-            return (tokens, gems, gold);
+        else {
+            notEnoughTokens(userAddress, availableTokens); //signal error (user doesn't have enough tokens)
         }
+    }
 
-        #[view] //returns how many tokens a loot box costs
-        fn getLootBoxPrice() -> u256 {
-            1
+    #[external] //sends the specified amount of tokens to the specified account
+    fn sendTokens(receiverAddress: ContractAddress, amount: u256) {
+        let userAddress = get_execution_info().unbox().caller_address; //get user address
+        let availableTokens = usersTokens::read((userAddress)); //extract how many tokens the user has
+        
+        if availableTokens < amount {
+            notEnoughTokens(userAddress, availableTokens); //signal error (user wants to send more tokens than what he has)
         }
+        else {
+            usersTokens::write(userAddress, availableTokens - amount); //remove tokens from user
+            usersTokens::write(receiverAddress, usersTokens::read((receiverAddress)) + amount); //add tokens to the receiver
+            tokensSent(userAddress, receiverAddress, availableTokens - amount); //signal transfer
+        }
+    }
+
+    #[view] //returns the assets of the specified player
+    fn getUserAssets(userAddress: ContractAddress) -> (u256, u256, u256) {
+        let tokens = usersTokens::read((userAddress));
+        let gems = usersGems::read((userAddress));
+        let gold = usersGold::read((userAddress));
+        return (tokens, gems, gold);
+    }
+
+    #[view] //returns how many tokens a loot box costs
+    fn getLootBoxPrice() -> u256 { 1 }
     }
 \end{lstlisting}
 
@@ -975,10 +981,10 @@ For example, if the incoming transaction hash is \(0x2fb8...ca29\) then gold is 
 A videogame using this technique for loot boxes, needs to be able to read back the items players have. The \verb|getUserAssets| function serves exactly this purpose. Balances, in this case, are public.
 
 \section{The client} \label{section:the_client}
-It is possible to interact with this smart contract by directly using the Starknet primitives we described in section \ref{subsubsection:daiwasc}, but we also proposed a videogame-like interface written in Python\footnote{The proposed client is very simple, it doesn't have error handling and expects correct input. It is good for a demo.}.
+It is possible to interact with this smart contract by directly using the Starknet primitives we described in section \nameref{subsubsection:daiwasc}, but we also proposed a videogame-like interface written in Python\footnote{The proposed client is very simple, it doesn't have error handling and expects correct input. It is good for a demo.}.
 
-We used a module called \verb|starknet_py| to interact with Starknet, and \verb|pySimpleGui| to create the graphically appealing\footnote{Spoiler: it is not!} user interface, shown in Figure \ref{figure:client_user_interface}.
-\begin{figure}[h]
+We used a module called \verb|starknet_py|\footnote{\url{https://pypi.org/project/starknet-py/}} to interact with Starknet, and \verb|pySimpleGui|\footnote{\url{https://pypi.org/project/PySimpleGUI/}} to create the graphically appealing\footnote{It ended up being less graphically appealing than expected...} user interface, shown in Figure \ref{figure:client_user_interface}.
+\begin{figure}[ht]
     \centering
     \includegraphics[width=\textwidth]{client_user_interface} 
     \caption{The graphically appealing user interface.}
@@ -989,14 +995,14 @@ The main \verb|starknet_py| objects are:
 \begin{description}
     \item[FullNodeClient] A facade to interact with a full node of Starknet. It can be used to send and read transactions.
     \item[Account] An helper object representing the user account. It can be used in tandem with \verb|FullNodeClient| to send transactions to Starknet.
-    \item[Contract] An helper encapsulating a contract. It makes it easy to invoke contract functions and get back the result of the invocation.
+    \item[Contract] An helper object encapsulating a contract. It makes it easy to invoke contract functions and get back the result of the invocation.
 \end{description}
 
 Interacting with Starknet takes time. For this reason most of \verb|starknet_py| methods have an \verb|async| version.
 
 One of the most challenging part has been to fetch the transaction of a smart contract invocation. \verb|starknet_py| proposes \verb|Contract.wait_for_completion| method to do so, but this method waits for the transaction to be accepted on layer 2. 
 In our case we just needed to wait for the transaction to be pending on layer 2, therefore we resorted to a polling loop, shown in Listing \ref{listing:polling_loop}:
-\begin{lstlisting}[language=python, style=python3, label=listing:polling_loop]
+\begin{lstlisting}[language=python, style=python3, label=listing:polling_loop, caption={Polling loop.}, captionpos=b]
     invocation = contract.functions["buyLootBox"].invoke_sync(max_fee=int(1e15))
     
     #keep looking for the transaction hash
@@ -1010,17 +1016,17 @@ In our case we just needed to wait for the transaction to be pending on layer 2,
             transactionFound = True
 \end{lstlisting}
 
-As it is possible to note from Listing \ref{listing:polling_loop}, we used the synchronous version of the methods of \verb|starknet_py|. Indeed we used a \verb|pySimpleGui| functionality (\verb|window.perform_long_operation|), to perform asynchronous tasks without blocking the GUI.
+As it is possible to note from Listing \ref{listing:polling_loop}, we used the synchronous version of the methods of \verb|starknet_py|. Indeed we used a \verb|pySimpleGui| functionality (\verb|Window.perform_long_operation|), to perform asynchronous tasks without blocking the GUI.
 
 The functions we implemented in the GUI are:
 \begin{description}
-    \item[Open loot boxes] To open a loot box it suffices to click on the \verb|Open!| button. After this, the button will be disabled until the Starknet transaction is performed on layer 2. At this point the result of the loot box opening will be displayed, the balances updated and the last transaction hash will be inserted in the \verb|View last transaction| button.
-    \item[Send tokens] To send tokens to other players, it suffices to insert their address and the amount of tokens to send, then click on \verb|Send|. After this, the button will be disabled until the Starknet transaction is performed on layer 2. Then tokens balance will be updated and the last transaction hash will be inserted in the \verb|View last transaction| button.
-    \item[View last transaction] This button opens the Starkscan webpage relative to the last performed transaction. In this way, the user can make sure he got awarded the prize the smart contract actually randomly extracted.
-    \item[View contract] This button opens the Starkscan webpage of the smart contract. Here it is possible to take a look at the code of the smart contract and all its past invocations.
+    \item[Open loot box] To open a loot box it suffices to click on the \verb|Open!| button. After this, the button will be disabled until the Starknet transaction is performed on layer 2. At this point the result of the loot box opening will be displayed, the balances updated and the last transaction hash will be inserted in the \verb|View last transaction| button.
+    \item[Send tokens] To send tokens to other players, it suffices to insert their address and the amount of tokens to send, then click on \verb|Send|. After this, the button will be disabled until the Starknet transaction is performed on layer 2. Then, the tokens balance will be updated and the last transaction hash will be inserted in the \verb|View last transaction| button.
+    \item[View last transaction] This button opens the Starkscan webpage relative to the last performed transaction. In this way, the user can make sure he got awarded the prize the smart contract actually randomly extracted by looking at the events details.
+    \item[View contract] This button opens the Starkscan webpage of the smart contract. Here it is possible to take a look at the code\footnote{Actually it is possible to take a look only at the bytecode. Starkscan (and other Starknet explorers) have a functionality to verify and upload the code of a smart contract, but, as of July 2023, it only works with smart contracts written in Cairo 0.x} of the smart contract and all its past invocations.
 \end{description}
 
-It is possible to look at the complete code at:\\\url{https://github.com/Lapo9/Layer-2-Blockchains-for-Videogames/blob/master/LootBoxSmartContract/LootBoxClient.py}.
+It is possible to look at the complete code on Github at: \url{https://github.com/Lapo9/Layer-2-Blockchains-for-Videogames/blob/master/LootBoxSmartContract/LootBoxClient.py}
 
 \newpage
 \part{Appendix} \label{part:appendix}
@@ -1028,7 +1034,7 @@ It is possible to look at the complete code at:\\\url{https://github.com/Lapo9/L
 A Merkle tree is a binary tree data structure where \cite{ethereum_merkle_trees}:
 \begin{description}
     \item[Leaves] A leaf is labeled with the hash of a block of data.
-    \item[Internal nodes] An internal node is labelled with the hash of the label of its 2 children.
+    \item[Internal nodes] An internal node is labeled with the hash of the label of its 2 children.
 \end{description}
 
 This kind of structure is very useful in distributed systems, because it allows to verify data integrity very efficiently.
@@ -1042,7 +1048,7 @@ In the blockchain context Merkle trees are extensively employed, for example:
     \item[Simple payment verification] The presence of the Merkle root in the header of blocks, allow for a lightweight algorithm to verify the existence of a transaction \verb|T|:
         \begin{enumerate}
             \item The lightweight node \verb|L| fetches only the headers of all the blocks of the blockchain from full nodes (headers are orders of magnitude smaller than full blocks).
-            \item \verb|L| asks the Merkle proof (see section \ref{subsection:merkle_proof}) for the transaction \verb|T| to full nodes.
+            \item \verb|L| asks the Merkle proof (see section \nameref{subsection:merkle_proof}) for the transaction \verb|T| to full nodes.
             \item Now \verb|L| can easily verify whether the Merkle proof is valid, by simply calculating the Merkle root and searching for it in one of the headers he previously fetched.
         \end{enumerate} 
 \end{description}
@@ -1061,7 +1067,7 @@ Let's take the example of Figure \ref{figure:merkle_proof}:
     \item At this point \verb|V| can verify if the known Merkle root matches with \(H_{A-H}\).
 \end{enumerate}
 
-\begin{figure}[h]
+\begin{figure}[ht]
     \centering
     \includegraphics[width=\textwidth]{merkle_proof} 
     \caption{An example of a Merkle proof from \cite{ethereum_merkle_proof}.}

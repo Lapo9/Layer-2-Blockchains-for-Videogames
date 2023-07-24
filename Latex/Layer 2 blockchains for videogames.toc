@@ -30,17 +30,17 @@
 \contentsline {subsection}{\numberline {8.1}Sequencers}{21}{subsection.8.1}%
 \contentsline {subsection}{\numberline {8.2}Provers}{21}{subsection.8.2}%
 \contentsline {subsection}{\numberline {8.3}Nodes}{21}{subsection.8.3}%
-\contentsline {section}{\numberline {9}Transaction journey}{21}{section.9}%
+\contentsline {section}{\numberline {9}Transaction journey}{22}{section.9}%
 \contentsline {section}{\numberline {10}Starknet setup}{22}{section.10}%
-\contentsline {subsection}{\numberline {10.1}Prerequisites}{22}{subsection.10.1}%
+\contentsline {subsection}{\numberline {10.1}Prerequisites}{23}{subsection.10.1}%
 \contentsline {subsection}{\numberline {10.2}Install Python3.9}{23}{subsection.10.2}%
 \contentsline {subsection}{\numberline {10.3}Install Cairo and Starknet}{23}{subsection.10.3}%
 \contentsline {subsection}{\numberline {10.4}Setting up environment variables}{24}{subsection.10.4}%
 \contentsline {subsection}{\numberline {10.5}Creating an account}{24}{subsection.10.5}%
-\contentsline {subsection}{\numberline {10.6}Deploying and interacting with a smart contract}{24}{subsection.10.6}%
+\contentsline {subsection}{\numberline {10.6}Deploying and interacting with a smart contract}{25}{subsection.10.6}%
 \contentsline {section}{\numberline {11}Cairo}{25}{section.11}%
-\contentsline {subsection}{\numberline {11.1}General concepts}{25}{subsection.11.1}%
-\contentsline {subsection}{\numberline {11.2}Storage}{26}{subsection.11.2}%
+\contentsline {subsection}{\numberline {11.1}General concepts}{26}{subsection.11.1}%
+\contentsline {subsection}{\numberline {11.2}Storage}{27}{subsection.11.2}%
 \contentsline {subsection}{\numberline {11.3}Contract sections}{27}{subsection.11.3}%
 \contentsline {part}{IV\hspace {1em}Implementation: immutable loot boxes}{28}{part.4}%
 \contentsline {section}{\numberline {12}Problem statement}{28}{section.12}%
