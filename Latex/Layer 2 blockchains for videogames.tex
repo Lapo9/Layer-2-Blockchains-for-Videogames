@@ -1034,7 +1034,7 @@ It is possible to look at the complete code on Github at: \url{https://github.co
 A Merkle tree is a binary tree data structure where \cite{ethereum_merkle_trees}:
 \begin{description}
     \item[Leaves] A leaf is labeled with the hash of a block of data.
-    \item[Internal nodes] An internal node is labeled with the hash of the label of its 2 children.
+    \item[Internal nodes] An internal node is labeled with the hash of the labels of its 2 children.
 \end{description}
 
 This kind of structure is very useful in distributed systems, because it allows to verify data integrity very efficiently.
@@ -1045,7 +1045,7 @@ Moreover, in case the roots don't match, it is possible to rapidly identify the 
 In the blockchain context Merkle trees are extensively employed, for example:
 \begin{description}
     \item[Block headers] Block headers contain the root of the Merkle tree built with all the transactions inside the block.
-    \item[Simple payment verification] The presence of the Merkle root in the header of blocks, allow for a lightweight algorithm to verify the existence of a transaction \verb|T|:
+    \item[Simple payment verification] The presence of the Merkle tree root in the header of blocks, allows for a lightweight algorithm to verify the existence of a transaction \verb|T|:
         \begin{enumerate}
             \item The lightweight node \verb|L| fetches only the headers of all the blocks of the blockchain from full nodes (headers are orders of magnitude smaller than full blocks).
             \item \verb|L| asks the Merkle proof (see section \nameref{subsection:merkle_proof}) for the transaction \verb|T| to full nodes.
@@ -1078,7 +1078,7 @@ This works because \verb|W| cannot produce fake \textit{missing children} in ord
 
 The usefulness of Merkle proofs lies in the fact that it is sufficient to exchange an amount of information that is logarithmic compared to the number of items in the set.
 
-In the previous example, only 3 items were exchanged: \(<D, H_{A-B}, H_{E-H}>\). If data wasn't organized in a Merkle tree, all the items \(<A, B, D, E, F, G, H\) should have been exchanged to compute the final hash.
+In the previous example, only 3 items were exchanged: \(<D, H_{A-B}, H_{E-H}>\). If data wasn't organized in a Merkle tree, all the items \(<A, B, D, E, F, G, H>\) should have been exchanged to compute the final hash. 
 
 \newpage
 \bibliographystyle{apalike}
