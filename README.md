@@ -1,4 +1,4 @@
-# Layer-2-Blockchains-for-Videogames
+# [Layer 2 Blockchains for Videogames](https://github.com/Lapo9/Layer-2-Blockchains-for-Videogames/blob/master/Latex/Layer%202%20blockchains%20for%20videogames.pdf)
 As of July 2023, blockchains are becoming increasingly popular, and they are starting to be used in many different fields.
 
 **Videogaming is one such field.**
