@@ -1,0 +1,109 @@
+<h1 id="starknet-setup-tutorial">Starknet setup tutorial</h1>
+<p>In this tutorial we are going to install the <a href="https://www.starknet.io/en/what-is-starknet">Starknet</a> CLI, deploy and interact with a Starknet smart contract.</p>
+<p>This tutorial is for complete newcomers to Starknet and Linux, like me, therefore it is possible that some steps are redundand, or could be carried out in a more efficient way. For any clarification you can contact me at lapofalcone@gmail.com <sup>Possibly use TUTORIAL STARKNET as subject.</sub></p>
+<p>I&#39;ve personally used these steps to install the CLI. By the way, take into account that Starknet is in development, therefore <strong>things may change quickly</strong> (I published this tutorial In July 2023, as part of <a href="https://github.com/Lapo9/Layer-2-Blockchains-for-Videogames">a report about the usage of blockchains for videogames</a>).</p>
+<p>For example, in this tutorial we install <a href="https://book.cairo-lang.org/">Cairo</a> (the language in which to write smart contracts on Starknet) version 1.1.1. By the way Starknet will soon support Cairo 2.x.</p>
+<p>Users can interact with Starknet via a CLI available for Linux and MacOS. We are going to
+see how to create a smart contract and interact with it in Linux.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>We are going to work on a clean installation of Ubuntu 22.04.2 LTS, installed on a virtual
+machine in VirtualBox.</p>
+<h2 id="install-python3-9">Install Python3.9</h2>
+<p>As of July 2023, Starknet CLI can work with Python3.9, but not with Python3.10 yet. Since
+Python3.10 is the default version on Ubuntu 22.04.2, we must install Python3.9 and create
+a virtual environment for it.</p>
+<pre><code class="lang-bash">sudo apt update
+sudo apt install software-properties-common
+sudo<span class="hljs-built_in"> add-apt-repository </span>ppa:deadsnakes/ppa <span class="hljs-comment"># Python3 .9 is not directly available</span>
+sudo apt install python3.9
+python3.9 --version <span class="hljs-comment"># should return Python 3.9.1x</span>
+</code></pre>
+<p>Then we have to install some Python3.9 modules:</p>
+<pre><code class="lang-bash">sudo apt-get <span class="hljs-keyword">install</span> python3<span class="hljs-number">.9</span>-distutils # necessary <span class="hljs-keyword">to</span> <span class="hljs-keyword">install</span> <span class="hljs-keyword">some</span> other modules
+sudo apt-<span class="hljs-keyword">get</span> <span class="hljs-keyword">install</span> python3<span class="hljs-number">.9</span>-dev # necessary <span class="hljs-keyword">to</span> <span class="hljs-keyword">install</span> <span class="hljs-keyword">some</span> other modules
+sudo apt-<span class="hljs-keyword">get</span> <span class="hljs-keyword">install</span> python3<span class="hljs-number">.9</span>-venv #<span class="hljs-keyword">to</span> <span class="hljs-keyword">create</span> <span class="hljs-keyword">virtual</span> environments
+</code></pre>
+<p>Now we can create the virtual environment and activate it:</p>
+<pre><code class="lang-bash">python3<span class="hljs-number">.9</span> -m venv ∼/cairo_venv
+source ∼/cairo_venv/bin/<span class="hljs-built_in">activate</span>
+<span class="hljs-comment"># next lines in the terminal should start with ( cairo_venv )</span>
+</code></pre>
+<p>From now on all commands will be run inside the virtual environment, where the default
+version of Python is 3.9.</p>
+<h2 id="install-cairo-and-starknet">Install Cairo and Starknet</h2>
+<p>First, we have to install these dependencies:</p>
+<pre><code class="lang-bash">sudo apt <span class="hljs-keyword">install</span> -y libgmp3-dev <span class="hljs-comment">#for multiple precision arithmetic</span>
+sudo apt <span class="hljs-keyword">install</span> git <span class="hljs-comment">#will be used later on</span>
+curl --proto ’= https ’ --tlsv1.<span class="hljs-number">2</span> -sSf https://sh.rustup.rs | sh <span class="hljs-comment">#Rust</span>
+pip <span class="hljs-keyword">install</span> wheel <span class="hljs-comment">#install if the installation of fastecdsa fails</span>
+pip <span class="hljs-keyword">install</span> ecdsa <span class="hljs-comment">#cryptographic algorithm</span>
+pip <span class="hljs-keyword">install</span> fastecdsa <span class="hljs-comment">#cryptographic algorithm</span>
+pip <span class="hljs-keyword">install</span> sympy <span class="hljs-comment">#symbolic math</span>
+</code></pre>
+<p>Now we can install the Starknet CLI:</p>
+<pre><code class="lang-bash">pip <span class="hljs-keyword">install</span> cairo-lang
+starknet --version <span class="hljs-comment">#should return 0.12.0</span>
+</code></pre>
+<p>And the Cairo compiler <sup>I found out that there is a bug preventing using mappings (<code>LegacyMapping</code>) inside contracts. A
+workaround is to comment out line 71 at <code>.cairo/crates/cairo-lang-sierra-gas/src/gas_info.rs</code>. The
+underlying problem has something to do with a check on the estimated gas consumed by the contract.</sup></p>
+<pre><code class="lang-bash">git clone http<span class="hljs-variable">s:</span>//github.<span class="hljs-keyword">com</span>/starkware-libs/cairo/.cairo #we download the repo <span class="hljs-keyword">to</span> ∼/.cairo
+<span class="hljs-keyword">cd</span> .cairo #we <span class="hljs-keyword">move</span> <span class="hljs-keyword">to</span> the newly created folder
+git checkout <span class="hljs-keyword">tags</span>/v1.<span class="hljs-number">1.1</span> #we <span class="hljs-keyword">move</span> <span class="hljs-keyword">to</span> the release branch, v1.<span class="hljs-number">1.1</span> <span class="hljs-keyword">is</span> the <span class="hljs-keyword">last</span> supported <span class="hljs-keyword">version</span> <span class="hljs-keyword">on</span> Starknet
+cargo build --<span class="hljs-keyword">all</span> --release #we build the <span class="hljs-keyword">compiler</span> via Cargo
+<span class="hljs-keyword">cd</span> .. #we <span class="hljs-keyword">move</span> back <span class="hljs-keyword">to</span> the home folder
+</code></pre>
+<h2 id="setting-up-environment-variables">Setting up environment variables</h2>
+<p>To set permanent environment variables we have to append content to <code>~\.bashrc</code> file:</p>
+<pre><code class="lang-bash"><span class="hljs-attribute">nano</span> ∼/.bashrc <span class="hljs-comment"># open .bashrc with a text editor</span>
+</code></pre>
+<p>Now write these variables at the end of the file:</p>
+<pre><code class="lang-bash">export STARKNET_NETWORK=alpha-goerli <span class="hljs-selector-id">#the</span> Starknet network we will use (<span class="hljs-keyword">in</span> this case thetestnet)
+export STARKNET_WALLET=starkware<span class="hljs-selector-class">.starknet</span><span class="hljs-selector-class">.wallets</span><span class="hljs-selector-class">.open_zeppelin</span><span class="hljs-selector-class">.OpenZeppelinAccount</span> <span class="hljs-selector-id">#the</span> service to create account contract
+export CAIRO_COMPILER_DIR=∼/.cairo/target/release/ <span class="hljs-selector-id">#where</span> Cairo compiler is placed
+export CAIRO_COMPILER_ARGS=--add-pythonic-hints <span class="hljs-selector-id">#Cairo</span> compiler options
+</code></pre>
+<p>Now press <code>Ctrl + X</code>, then <code>y</code> and finally <code>Enter</code>.</p>
+<p>Now close and re-open the terminal (don’t forget to re-activate the virtual environment when
+you re-open the terminal).</p>
+<p>You can test if the environment variables we added exist with the command <code>printenv</code>.</p>
+<h2 id="creating-an-account">Creating an account</h2>
+<p>To create a Starknet account:</p>
+<pre><code class="lang-bash">starknet <span class="hljs-keyword">new</span><span class="hljs-type">_account</span> --account myAccountName
+</code></pre>
+<p>This will generate the address and the public-private key pair of the account, which will be
+printed in the terminal and also saved to
+<code>~/.starknet_accounts/starknet_open_zeppelin_accounts.json</code>.</p>
+<p>Now we have to add some funds to the account, so that we can use them to deploy the
+account contract.</p>
+<p>To do so we can use any Starknet faucet, for example: <a href="https://faucet.goerli.starknet">https://faucet.goerli.starknet</a>.
+io/.</p>
+<p>Then we can check on <a href="https://starkscan.co/">https://starkscan.co/</a> that the transaction with the funds is at
+least in Pending state.</p>
+<p>At this point, we can deploy the account:</p>
+<pre><code class="lang-bash">starknet deploy_account <span class="hljs-comment">--account myAccountName</span>
+</code></pre>
+<p>This will return the transaction hash: we must wait until the transaction is accepted on
+layer 2.</p>
+<h2 id="deploying-and-interacting-with-a-smart-contract">Deploying and interacting with a smart contract</h2>
+<p>To deploy a smart contract, first, we must have some Cairo code. There are some examples
+online, such as <a href="https://github.com/starknet-edu/deploy-cairo1-demo">https://github.com/starknet-edu/deploy-cairo1-demo</a>.</p>
+<p>Let’s say we have the code for the contract at <code>~/src/myContract.cairo</code>.</p>
+<p>First, we have to compile the Cairo code into Sierra bytecode:</p>
+<pre><code class="lang-bash">∼<span class="hljs-regexp">/.cairo/</span>target<span class="hljs-regexp">/release/</span>starknet -<span class="hljs-keyword">compile</span> ∼<span class="hljs-regexp">/src/my</span>Contract.cairo ∼<span class="hljs-regexp">/src/my</span>Contract.json
+</code></pre>
+<p>Then, we have to declare the smart contract. This will create a Class object in Starknet,
+which is a template containing our code:</p>
+<pre><code class="lang-bash">starknet <span class="hljs-keyword">declare</span> <span class="hljs-comment">-- contract ∼/src/myContract.json --account myAccountName</span>
+</code></pre>
+<p>Now we have to wait until the transaction declaring the contract is accepted on layer 2.</p>
+<p>Eventually, we have to deploy the contract. A smart contract will be created starting from
+the Class.</p>
+<pre><code class="lang-bash"><span class="hljs-comment">starknet</span> <span class="hljs-comment">deploy</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">class_hash</span> <span class="hljs-comment">HASH_OF_THE_PREVIOUSLY_CREATED_CLASS</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">inputs</span> <span class="hljs-comment">CONSTRUCTOR_ARGS</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">account</span> <span class="hljs-comment">myAccountName</span>
+</code></pre>
+<p>As soon as the deploying transaction is accepted on layer 2, we can interact with the account:</p>
+<pre><code class="lang-bash">starknet<span class="hljs-built_in"> invoke </span>--address SC_ADDRESS --function FUNCTION_NAME --inputs FUNCTION_ARGS --account myAccountName
+</code></pre>
+<p>And we can also interact with the read-only functions of the contract via:</p>
+<pre><code class="lang-bash"><span class="hljs-comment">starknet</span> <span class="hljs-comment">call</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">address</span> <span class="hljs-comment">SM_ADDRESS</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">function</span> <span class="hljs-comment">FUNCTION_NAME</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">inputs</span> <span class="hljs-comment">FUNCTION_ARGS</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">account</span> <span class="hljs-comment">myAccountName</span>
+</code></pre>
