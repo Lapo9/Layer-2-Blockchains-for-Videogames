@@ -10,6 +10,8 @@ In [this report](https://github.com/Lapo9/Layer-2-Blockchains-for-Videogames/blo
 - What is [**Starknet**](https://www.starknet.io/en/what-is-starknet) and how to deploy a smart contract on it
 - A simple implementation of a Starknet [**smart contract to open loot boxes**](https://github.com/Lapo9/Layer-2-Blockchains-for-Videogames/blob/master/LootBoxSmartContract/LootBoxSmartContract.cairo) in a completely transparent way (and a [demo client](https://github.com/Lapo9/Layer-2-Blockchains-for-Videogames/blob/master/LootBoxSmartContract/LootBoxClient.py) to use this smart contract)
 
+![](https://github.com/Lapo9/Layer-2-Blockchains-for-Videogames/blob/master/figures/logo.png)
+
 ## Table of contents
 ### Part I - Blockchain concepts and their limitations
 - What is a blockchain 5
