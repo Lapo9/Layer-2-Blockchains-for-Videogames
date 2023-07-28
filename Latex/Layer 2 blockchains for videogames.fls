@@ -1,8 +1,8 @@
-PWD c:/Users/lapof/Desktop/Blockchain report/Latex
+PWD d:/Users/lapof/Documents/Development/Blockchain report/Latex
 INPUT p:/Program Files/texlive/2023/texmf.cnf
 INPUT p:/Program Files/texlive/2023/texmf-dist/web2c/texmf.cnf
 INPUT p:/Program Files/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT c:/Users/lapof/Desktop/Blockchain report/Latex/Layer 2 blockchains for videogames.tex
+INPUT d:/Users/lapof/Documents/Development/Blockchain report/Latex/Layer 2 blockchains for videogames.tex
 OUTPUT Layer 2 blockchains for videogames.log
 INPUT p:/Program Files/texlive/2023/texmf-dist/tex/latex/base/article.cls
 INPUT p:/Program Files/texlive/2023/texmf-dist/tex/latex/base/article.cls
@@ -151,6 +151,10 @@ INPUT p:/Program Files/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
 INPUT p:/Program Files/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmmi12.tfm
 INPUT p:/Program Files/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmsy10.tfm
 INPUT p:/Program Files/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmr17.tfm
+INPUT ../figures/logo.png
+INPUT ../figures/logo.png
+INPUT ../figures/logo.png
+INPUT ../figures/logo.png
 INPUT p:/Program Files/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map
 INPUT p:/Program Files/texlive/2023/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT ./Layer 2 blockchains for videogames.toc
